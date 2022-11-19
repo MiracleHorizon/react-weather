@@ -1,25 +1,16 @@
-import AppStore from 'stores/AppStore'
-import { WeatherUnitsSystem } from 'models/WeatherUnitsSystem'
-
 export class WeatherUnits {
-  private static _units = AppStore.unitsSystem
+  public static getPascalPressureFromMmOfMercury(pressure: number): number {
+    // Гектопаскали.
+    const PASCAL_PRESSURE_MULTIPLY_VALUE = 0.750062
 
-  public static getSpeedUnitsPostfix(): string {
-    switch (this._units) {
-      case WeatherUnitsSystem.IMPERIAL:
-        return 'ml/h'
-      case WeatherUnitsSystem.METRIC:
-        return 'km/h'
-    }
+    return pressure * PASCAL_PRESSURE_MULTIPLY_VALUE
   }
 
-  public static getTemperatureUnitsPostfix(): string {
-    switch (this._units) {
-      case WeatherUnitsSystem.IMPERIAL:
-        return 'F'
-      case WeatherUnitsSystem.METRIC:
-        return 'C'
-    }
+  public static getMmOfMercuryPressureFromPascal(pressure: number): number {
+    // Миллиметры ртутного столба.
+    const MM_OF_MERCURY_PRESSURE_MULTIPLY_VALUE = 133.32
+
+    return pressure * MM_OF_MERCURY_PRESSURE_MULTIPLY_VALUE
   }
 
   public static getMetricSpeedFromImperial(imperialSpeed: number): number {

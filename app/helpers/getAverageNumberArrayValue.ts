@@ -9,6 +9,8 @@ export const getAverageNumberArrayValue = ({ array, rounding }: Params) => {
       return Math.floor(averageValue)
     case 'ceil':
       return Math.ceil(averageValue)
+    case 'round':
+      return Math.round(averageValue)
   }
 }
 
@@ -17,4 +19,4 @@ interface Params {
   rounding: TRounding
 }
 
-type TRounding = 'floor' | 'ceil' | 'default'
+type TRounding = 'floor' | 'ceil' | 'round' | 'default'

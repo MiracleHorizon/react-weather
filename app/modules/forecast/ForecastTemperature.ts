@@ -3,14 +3,14 @@ import { IForecastSegment } from 'models/weather/forecast/IForecastSegment'
 import { getAverageNumberArrayValue } from 'helpers/getAverageNumberArrayValue'
 
 export class ForecastTemperature extends Forecast {
-  constructor(lists: IForecastSegment[]) {
-    super(lists)
+  constructor(forecastDay: IForecastSegment[]) {
+    super(forecastDay)
   }
 
   public getAverageTemperature(): number {
     return getAverageNumberArrayValue({
       array: this._forecast.map(segment => segment.main.temp),
-      rounding: 'floor',
+      rounding: 'round',
     })
   }
 
@@ -24,7 +24,7 @@ export class ForecastTemperature extends Forecast {
   public getAverageMaxTemperature(): number {
     return getAverageNumberArrayValue({
       array: this._forecast.map(segment => segment.main.temp_max),
-      rounding: 'floor',
+      rounding: 'ceil',
     })
   }
 

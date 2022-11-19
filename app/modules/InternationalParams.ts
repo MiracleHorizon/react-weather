@@ -1,4 +1,4 @@
-import capitalize from "lodash.capitalize"
+import capitalize from 'lodash.capitalize'
 
 export class InternationalParams {
   public static getRegionNameFromRegionCode(regionCode: string) {

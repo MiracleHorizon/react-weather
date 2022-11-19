@@ -1,22 +1,30 @@
 import { NextPage } from 'next'
 
-import { WeatherService } from '../app/services/WeatherService'
+import ForecastStore from 'stores/ForecastStore'
+import { WeatherForecast } from 'components/Forecast'
+import { WeatherService } from 'services/WeatherService'
 import { IFiveDayForecastResponse } from 'models/api/responses/IFiveDayForecastResponse'
 
-const HomePage: NextPage<{ forecast: IFiveDayForecastResponse }> = ({
-  forecast,
+const HomePage: NextPage<{ forecastResponse: IFiveDayForecastResponse }> = ({
+  forecastResponse,
 }) => {
-  return <div className='w-screen min-h-screen'></div>
+  ForecastStore.forecast = forecastResponse
+
+  return (
+    <div className='w-screen min-h-screen'>
+      <WeatherForecast />
+    </div>
+  )
 }
 
 export default HomePage
 
 export const getStaticProps = async () => {
-  const forecast = await WeatherService.fetchFiveDayForecast()
+  const forecastResponse = await WeatherService.fetchFiveDayForecast()
 
   return {
     props: {
-      forecast,
+      forecastResponse,
     },
   }
 }

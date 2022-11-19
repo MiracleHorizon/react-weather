@@ -1,6 +1,8 @@
-import { IForecastSegment } from 'models/api/responses/IFiveDayForecastResponse'
+import { IForecastSegment } from 'models/weather/forecast/IForecastSegment'
 
-export const getForecastFromForecastsList = (list: IForecastSegment[]) => {
+export const getForecastDaysFromForecastsList = (
+  list: IForecastSegment[]
+): IForecastSegment[][] => {
   const dates = list.map(segment => new Date(segment.dt_txt).getDate())
   const uniqueDates = Array.from(new Set(dates))
 

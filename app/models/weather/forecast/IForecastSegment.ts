@@ -1,6 +1,6 @@
 import { ISys } from '../ISys'
 import { IWind } from '../IWind'
-import { IRain } from '../IRain'
+import { IRainfall } from '../IRainfall'
 import { IClouds } from '../IClouds'
 import { IForecastWeather } from './IForecastWeather'
 import { IMainForecastInfo } from './IMainForecastInfo'
@@ -13,7 +13,8 @@ export interface IForecastSegment {
   wind: IWind
   visibility: number
   pop: number
-  rain: IRain
+  rain?: IRainfall
+  snow?: IRainfall
   sys: ISys
   dt_txt: string
 }

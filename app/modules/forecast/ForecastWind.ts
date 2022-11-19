@@ -5,8 +5,8 @@ import { getRepeatCountFromArray } from 'helpers/getRepeatCountFromArray'
 import { getAverageNumberArrayValue } from 'helpers/getAverageNumberArrayValue'
 
 export class ForecastWind extends Forecast {
-  constructor(forecast: IForecastSegment[]) {
-    super(forecast)
+  constructor(forecastDay: IForecastSegment[]) {
+    super(forecastDay)
   }
 
   public getAverageWindSpeed(): string {

@@ -13,7 +13,10 @@ export class DateHandler {
   }
 
   public getDayOfTheWeek(): string {
+    const currentDate = new Date()
     const weekDayNumber = this._date.getDay()
+
+    if (currentDate.getDay() === weekDayNumber) return 'Today'
 
     switch (weekDayNumber) {
       case 1:
