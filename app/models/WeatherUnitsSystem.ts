@@ -1,5 +1,5 @@
 export enum WeatherUnitsSystem {
-  DEFAULT = 'default',
-  IMPERIAL = 'imperial',
-  METRIC = 'metric',
+  DEFAULT = 'Default',
+  IMPERIAL = 'Imperial',
+  METRIC = 'Metric',
 }

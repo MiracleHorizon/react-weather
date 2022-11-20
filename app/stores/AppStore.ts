@@ -4,8 +4,8 @@ import { WeatherUnitsSystem } from 'models/WeatherUnitsSystem'
 import { AtmosphericPressureUnits } from 'models/AtmosphericPressureUnits'
 
 class AppStore {
-  private _unitsSystem: WeatherUnitsSystem = WeatherUnitsSystem.METRIC
-  private _atmosphericPressureUnits: AtmosphericPressureUnits =
+  private _unitsSystem = WeatherUnitsSystem.METRIC
+  private _atmosphericPressureUnits =
     AtmosphericPressureUnits.MILLIMETRES_OF_MERCURY
 
   constructor() {
@@ -18,6 +18,14 @@ class AppStore {
 
   public get atmosphericPressureUnits() {
     return this._atmosphericPressureUnits
+  }
+
+  public set unitsSystem(value: WeatherUnitsSystem) {
+    this._unitsSystem = value
+  }
+
+  public set atmosphericPressureUnits(value: AtmosphericPressureUnits) {
+    this._atmosphericPressureUnits = value
   }
 }
 

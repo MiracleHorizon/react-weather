@@ -19,10 +19,9 @@ export const WeatherForecast = () => {
     },
     []
   )
-
   // Todo переключение между прогнозами человек клавиатуру
   return (
-    <div className='w-full h-screen bg-gray-900 px-[10px]'>
+    <div className='w-full h-full px-[10px]'>
       <SelectedDayPanel day={selectedDay} />
       <ul>
         {forecasts.map((forecastDay, index) => (
