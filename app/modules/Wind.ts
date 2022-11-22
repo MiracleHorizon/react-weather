@@ -1,34 +1,6 @@
-import AppStore from 'stores/AppStore'
-import { WeatherUnitsSystem } from 'models/WeatherUnitsSystem'
 import { WindDirection } from 'models/WindDirection'
-import { WeatherUnits } from './WeatherUnits'
 
-// Todo Переработать
 export class Wind {
-  private static _units = AppStore.unitsSystem
-
-  public static getWindSpeed(windSpeed: number): number {
-    switch (this._units) {
-      case WeatherUnitsSystem.DEFAULT:
-        return WeatherUnits.getMetricSpeedFromImperial(windSpeed)
-      case WeatherUnitsSystem.METRIC:
-        return WeatherUnits.getMetricSpeedFromImperial(windSpeed)
-      case WeatherUnitsSystem.IMPERIAL:
-        return WeatherUnits.getImperialSpeedFromMetric(windSpeed)
-    }
-  }
-
-  public static getWindGustsSpeed(windGustsSpeed: number): number {
-    switch (this._units) {
-      case WeatherUnitsSystem.DEFAULT:
-        return WeatherUnits.getMetricSpeedFromImperial(windGustsSpeed)
-      case WeatherUnitsSystem.METRIC:
-        return WeatherUnits.getMetricSpeedFromImperial(windGustsSpeed)
-      case WeatherUnitsSystem.IMPERIAL:
-        return WeatherUnits.getImperialSpeedFromMetric(windGustsSpeed)
-    }
-  }
-
   public static getWindDirection(windDirectionDegrees: number): string {
     if (windDirectionDegrees >= 0 && windDirectionDegrees < 45) {
       return WindDirection.N

@@ -1,10 +1,10 @@
 import { ICity } from 'models/weather/ICity'
-import { IForecastSegment } from 'models/weather/forecast/IForecastSegment'
+import { IWeatherReport } from 'models/weather/forecast/IWeatherReport'
 
 export interface IFiveDayForecastResponse {
   cod: string
   message: number
   cnt: number
-  list: IForecastSegment[]
+  list: IWeatherReport[]
   city: ICity
 }

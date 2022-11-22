@@ -1,17 +1,22 @@
 import Link from 'next/link'
 
-import { NAVIGATION_PATHS } from 'constants/navigation'
-
 export const DefaultLayoutFooter = () => (
-  <footer className='w-screen h-[60px] mt-auto'>
-    <nav className='h-full'>
-      <ul className='h-full flex items-center justify-around'>
-        {NAVIGATION_PATHS.map(path => (
-          <li key={path} className='h-[54px] w-[23%] bg-red-200'>
-            <Link href={path} className='w-full h-full block' />
-          </li>
-        ))}
-      </ul>
+  <footer className='w-screen mt-auto'>
+    <nav className='h-full flex items-center justify-between px-[32px] py-[24px] mobile:px-[18px]'>
+      <div className='flex'>
+        <div className='h-[24px] w-[24px] bg-gray-400 mr-[8px]' />
+        <Link href='/' className='font-medium text-[17px] text-gray-400'>
+          Home
+        </Link>
+      </div>
+      <div className='flex'>
+        <Link href='/forecast'>
+          <div className='h-[24px] w-[24px] bg-gray-400'></div>
+        </Link>
+        <div className='ml-[16px]'>
+          <div className='h-[24px] w-[24px] bg-gray-400'></div>
+        </div>
+      </div>
     </nav>
   </footer>
 )

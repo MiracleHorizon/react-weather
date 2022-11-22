@@ -12,11 +12,39 @@ export class DateHandler {
     return timesOfDay + postfix
   }
 
-  public getDayOfTheWeek(): string {
+  public getTimesOfYear(): string {
+    const monthNumber = this._date.getMonth() + 1
+
+    if (monthNumber === 1 || monthNumber === 2 || monthNumber === 3) {
+      return 'Winter'
+    }
+
+    if (monthNumber === 4 || monthNumber === 5 || monthNumber === 6) {
+      return 'Spring'
+    }
+
+    if (monthNumber === 7 || monthNumber === 8 || monthNumber === 9) {
+      return 'Summer'
+    }
+
+    if (monthNumber === 10 || monthNumber === 11 || monthNumber === 12) {
+      return 'Autumn'
+    }
+
+    throw new Error('') // todo доработать
+  }
+
+  public getIsTheSunRose(sunriseTimestamp: number): boolean {
+    return this._date.getTime() >= sunriseTimestamp
+  }
+
+  public getDayOfTheWeek(withTimeExpressions: boolean = false): string {
     const currentDate = new Date()
     const weekDayNumber = this._date.getDay()
 
-    if (currentDate.getDay() === weekDayNumber) return 'Today'
+    if (withTimeExpressions && currentDate.getDay() === weekDayNumber) {
+      return 'Today'
+    }
 
     switch (weekDayNumber) {
       case 1:

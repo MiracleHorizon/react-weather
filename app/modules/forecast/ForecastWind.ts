@@ -1,17 +1,18 @@
 import { Wind } from '../Wind'
 import { Forecast } from './Forecast'
-import { IForecastSegment } from 'models/weather/forecast/IForecastSegment'
+import { IWeatherReport } from 'models/weather/forecast/IWeatherReport'
 import { getRepeatCountFromArray } from 'helpers/getRepeatCountFromArray'
 import { getAverageNumberArrayValue } from 'helpers/getAverageNumberArrayValue'
 
 export class ForecastWind extends Forecast {
-  constructor(forecastDay: IForecastSegment[]) {
+  constructor(forecastDay: IWeatherReport[]) {
     super(forecastDay)
   }
 
   public getAverageWindSpeed(): string {
     const speedValues = this._forecast.map(segment => {
-      return Wind.getWindSpeed(segment.wind.speed)
+      // return Wind.getWindSpeed(segment.wind.speed)
+      return segment.wind.speed
     })
 
     return getAverageNumberArrayValue({
@@ -22,7 +23,8 @@ export class ForecastWind extends Forecast {
 
   public getAverageWindGust(): string {
     const gustValues = this._forecast.map(segment => {
-      return Wind.getWindGustsSpeed(segment.wind.gust)
+      // return Wind.getWindGustsSpeed(segment.wind.gust)
+      return segment.wind.gust
     })
 
     return getAverageNumberArrayValue({

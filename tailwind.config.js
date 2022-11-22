@@ -6,7 +6,17 @@ module.exports = {
     './app/layouts/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'rep-2': 'repeat(2, 1fr)',
+      },
+      gridTemplateRows: {
+        'rep-2': 'repeat(2, 1fr)',
+      },
+    },
+    screens: {
+      mobile: { max: '390px' },
+    },
   },
   plugins: [],
 }

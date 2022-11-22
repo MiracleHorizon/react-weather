@@ -15,14 +15,14 @@ export class WeatherUnitsPostfix {
     }
   }
 
-  public static getSpeedUnitsPostfix(): string {
+  public static getWindSpeedUnitsPostfix(): string {
     switch (this._units) {
       case WeatherUnitsSystem.DEFAULT:
-        return 'km/h'
+        return 'm/s'
       case WeatherUnitsSystem.IMPERIAL:
         return 'ml/h'
       case WeatherUnitsSystem.METRIC:
-        return 'km/h'
+        return 'm/s'
     }
   }
 
@@ -34,6 +34,17 @@ export class WeatherUnitsPostfix {
         return 'F'
       case WeatherUnitsSystem.METRIC:
         return 'C'
+    }
+  }
+
+  public static getVisibilityUnitsPostfix(): string {
+    switch (this._units) {
+      case WeatherUnitsSystem.DEFAULT:
+        return 'km'
+      case WeatherUnitsSystem.IMPERIAL:
+        return 'ml'
+      case WeatherUnitsSystem.METRIC:
+        return 'km'
     }
   }
 }

@@ -5,7 +5,7 @@ import { IClouds } from '../IClouds'
 import { IForecastWeather } from './IForecastWeather'
 import { IMainForecastInfo } from './IMainForecastInfo'
 
-export interface IForecastSegment {
+export interface IWeatherReport {
   dt: number
   main: IMainForecastInfo
   weather: IForecastWeather[]
@@ -15,6 +15,14 @@ export interface IForecastSegment {
   pop: number
   rain?: IRainfall
   snow?: IRainfall
-  sys: ISys
+  sys: ISys | ICurrentSys
   dt_txt: string
+}
+
+interface ICurrentSys {
+  type: number
+  id: number
+  country: string
+  sunrise: number
+  sunset: number
 }

@@ -1,13 +1,27 @@
-import { DefaultLayout } from 'layouts/Default'
+import { NextPage } from 'next'
 
-const HomePage = () => {
+import { DefaultLayout } from 'layouts/Default'
+import { WeatherService } from 'services/WeatherService'
+import { ICurrentWeatherResponse } from 'models/api/responses/ICurrentWeatherResponse'
+
+const HomePage: NextPage<{ weatherResponse: ICurrentWeatherResponse }> = ({
+  weatherResponse,
+}) => {
   return (
-    <DefaultLayout>
-      <div>
-        <h1 className='text-white text-center'>Главная страница</h1>
-      </div>
+    <DefaultLayout title='Current Weather'>
+      <div className='px-[24px] bg-gray-50'></div>
     </DefaultLayout>
   )
 }
 
 export default HomePage
+
+export const getStaticProps = async () => {
+  const weatherResponse = await WeatherService.fetchCurrentWeather()
+
+  return {
+    props: {
+      weatherResponse,
+    },
+  }
+}

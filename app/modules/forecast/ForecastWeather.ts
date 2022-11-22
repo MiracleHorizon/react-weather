@@ -1,9 +1,9 @@
 import { Forecast } from './Forecast'
-import { IForecastSegment } from 'models/weather/forecast/IForecastSegment'
+import { IWeatherReport } from 'models/weather/forecast/IWeatherReport'
 import { getAverageNumberArrayValue } from 'helpers/getAverageNumberArrayValue'
 
 export class ForecastWeather extends Forecast {
-  constructor(forecastDay: IForecastSegment[]) {
+  constructor(forecastDay: IWeatherReport[]) {
     super(forecastDay)
   }
 

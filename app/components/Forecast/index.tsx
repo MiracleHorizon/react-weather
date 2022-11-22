@@ -1,37 +1,45 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { observer } from 'mobx-react-lite'
 
 import ForecastStore from 'stores/ForecastStore'
-import { ForecastItem } from './ForecastItem'
-import { SelectedDayPanel } from './SelectedDayPanel'
-import { IForecastSegment } from 'models/weather/forecast/IForecastSegment'
-import { getForecastDaysFromForecastsList } from 'helpers/getForecastDaysFromForecastsList'
+import { DefaultLayout } from 'layouts/Default'
+import { ForecastDaysList } from './ForecastDaysList'
+import { ForecastTopPanel } from './ForecastTopPanel'
+import { DailyForecastPanel } from './DailyForecastPanel'
 
-export const WeatherForecast = () => {
-  const forecasts = useMemo(() => {
-    return getForecastDaysFromForecastsList(ForecastStore.forecastList)
+export const WeatherForecast = observer(() => {
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    const firstDay = ForecastStore.forecastDays[0]
+    const firstDailyForecast = firstDay.data[0]
+
+    ForecastStore.setSelectedDailyForecast(firstDay)
+    ForecastStore.setSelectedDailyForecastReport(firstDailyForecast)
+
+    setLoaded(true)
   }, [])
 
-  const [selectedDay, setSelectedDay] = useState(forecasts[0])
+  // useEffect(() => {
+  //   if (loaded) {
+  //     const firstDailyForecastReport =
+  //       ForecastStore.selectedDailyForecast.data[0]
+  //
+  //     ForecastStore.setSelectedDailyForecastReport(firstDailyForecastReport)
+  //   }
+  // }, [ForecastStore.selectedDailyForecast, loaded])
 
-  const handleSetSelectedDay = useCallback(
-    (forecastDay: IForecastSegment[]) => {
-      setSelectedDay(forecastDay)
-    },
-    []
-  )
-  // Todo переключение между прогнозами человек клавиатуру
+  if (!loaded) return null
+
   return (
-    <div className='w-full h-full px-[10px]'>
-      <SelectedDayPanel day={selectedDay} />
-      <ul>
-        {forecasts.map((forecastDay, index) => (
-          <ForecastItem
-            key={index}
-            forecastDay={forecastDay}
-            handleSetSelectedDay={handleSetSelectedDay}
-          />
-        ))}
-      </ul>
-    </div>
+    <DefaultLayout title='Weather Forecast'>
+      <main className='h-full flex flex-col'>
+        <div>
+          <ForecastTopPanel />
+          <DailyForecastPanel />
+        </div>
+        <ForecastDaysList />
+      </main>
+    </DefaultLayout>
   )
-}
+})

@@ -1,13 +1,12 @@
-import capitalize from 'lodash.capitalize'
-
 import { ForecastTimeString } from 'models/ForecastTimeString'
-import { IForecastSegment } from 'models/weather/forecast/IForecastSegment'
+import { IWeatherReport } from 'models/weather/forecast/IWeatherReport'
+import { capitalizeString } from 'helpers/capitalizeString'
 
 // Todo Проверить уровни доступа методов
 export class Forecast {
-  constructor(protected _forecast: IForecastSegment[]) {}
+  constructor(protected _forecast: IWeatherReport[]) {}
 
-  public get forecast(): IForecastSegment[] {
+  public get forecast(): IWeatherReport[] {
     return this._forecast
   }
 
@@ -15,7 +14,7 @@ export class Forecast {
     return this._forecast[0].dt_txt
   }
 
-  public get weatherState(): IForecastSegment {
+  public get weatherState(): IWeatherReport {
     const morningSegment = this.getSegmentByTime(ForecastTimeString.MORNING)
     const middaySegment = this.getSegmentByTime(ForecastTimeString.MIDDAY)
     const lunchSegment = this.getSegmentByTime(ForecastTimeString.LUNCH)
@@ -32,15 +31,12 @@ export class Forecast {
   public getCloudsState(): string {
     const cloudsState = this.weatherState.weather[0].description
 
-    return cloudsState
-      .split(' ')
-      .map(word => capitalize(word))
-      .join(' ')
+    return capitalizeString(cloudsState)
   }
 
   private getSegmentByTime(
     forecastTime: ForecastTimeString
-  ): IForecastSegment | null {
+  ): IWeatherReport | null {
     const forecastSegment = this._forecast.find(({ dt_txt }) => {
       const segmentDate = new Date(dt_txt)
 
