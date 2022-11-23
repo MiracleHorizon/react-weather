@@ -15,7 +15,7 @@ export const CardsLayoutItem: FC<IWeatherReport & { index: number }> = observer(
 
     return (
       <div
-        className='w-[33%] max-w-[190px] h-full rounded-[20px] cursor-pointer text-center text-white flex flex-col justify-between'
+        className='w-[31%] max-w-[190px] h-full rounded-[20px] cursor-pointer text-center text-white flex flex-col justify-between'
         onClick={() => ForecastStore.setSelectedDailyForecastReport(report)}
       >
         <div

@@ -28,10 +28,10 @@ export class Forecast {
     return this._forecast[0]
   }
 
-  public getCloudsState(): string {
-    const cloudsState = this.weatherState.weather[0].description
+  public getWeatherCondition(): string {
+    const weatherCondition = this.weatherState.weather[0].description
 
-    return capitalizeString(cloudsState)
+    return capitalizeString(weatherCondition)
   }
 
   private getSegmentByTime(

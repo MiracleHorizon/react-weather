@@ -1,0 +1,6 @@
+export { default as HomeSvg } from './HomeSvg'
+export { default as ListSvg } from './ListSvg'
+export { default as CardsSvg } from './CardsSvg'
+export { default as ChartSvg } from './ChartSvg'
+export { default as CogSvg } from './CogSvg'
+export { default as MapPinSvg } from './MapPinSvg'

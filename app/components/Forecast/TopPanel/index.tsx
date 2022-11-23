@@ -9,7 +9,7 @@ export const ForecastTopPanel = observer(() => {
   const { setSelectedDailyForecastReport } = ForecastStore
 
   return (
-    <div className='bg-gray-50 pb-[12px]'>
+    <div className='pb-[16px]'>
       <TemperatureBar />
       <LocationBar />
       {/*<WeatherInfoPanel {...selectedDailyForecastSegment} />*/}

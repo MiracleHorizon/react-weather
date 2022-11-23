@@ -3,8 +3,8 @@ import { observer } from 'mobx-react-lite'
 
 import ForecastStore from 'stores/ForecastStore'
 import { DefaultLayout } from 'layouts/Default'
-import { ForecastDaysList } from './ForecastDaysList'
-import { ForecastTopPanel } from './ForecastTopPanel'
+import { ForecastDaysList } from './DaysList'
+import { ForecastTopPanel } from './TopPanel'
 import { DailyForecastPanel } from './DailyForecastPanel'
 
 export const WeatherForecast = observer(() => {
@@ -20,6 +20,7 @@ export const WeatherForecast = observer(() => {
     setLoaded(true)
   }, [])
 
+  // todo реализовать корректно код снизу
   // useEffect(() => {
   //   if (loaded) {
   //     const firstDailyForecastReport =
@@ -33,8 +34,8 @@ export const WeatherForecast = observer(() => {
 
   return (
     <DefaultLayout title='Weather Forecast'>
-      <main className='h-full flex flex-col'>
-        <div>
+      <main className='h-full flex flex-col pb-[16px]'>
+        <div className='w-full bg-gray-100'>
           <ForecastTopPanel />
           <DailyForecastPanel />
         </div>

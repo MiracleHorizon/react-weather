@@ -4,7 +4,7 @@ import classNames from 'classnames'
 
 import ForecastStore from 'stores/ForecastStore'
 import { DateHandler } from 'modules/DateHandler'
-import { ForecastTemperature } from 'modules/forecast/ForecastTemperature'
+import { WeatherReport } from 'modules/weather/WeatherReport'
 import { IDailyForecast } from 'types/weather'
 
 export const ForecastItem: FC<IDailyForecast> = observer(
@@ -13,7 +13,10 @@ export const ForecastItem: FC<IDailyForecast> = observer(
     const { selectedDailyForecast } = ForecastStore
     const isSelected = selectedDailyForecast.identifier === identifier
 
-    const temperature = useMemo(() => new ForecastTemperature(data), [data])
+    const { weatherCondition, weatherIconClassName } = useMemo(
+      () => new WeatherReport(data[0]),
+      [data]
+    )
 
     const dateHandler = useMemo(() => new DateHandler(dateString), [dateString])
 
@@ -29,7 +32,7 @@ export const ForecastItem: FC<IDailyForecast> = observer(
           ForecastStore.setSelectedDailyForecast({ identifier, data })
         }
       >
-        <span>{temperature.getAverageTemperature()}</span>
+        <i className={`wi text-[24px] ${weatherIconClassName}`} />
         <span className='font-semibold text-[18px] mt-[12px]'>
           {dateHandler.getDayOfTheWeek()[0]}
         </span>

@@ -6,7 +6,7 @@ export const LocationBar = () => {
 
   return (
     <div className='text-center'>
-      <h3 className='text-[20px] text-gray-500'>
+      <h3 className='text-[18px] text-gray-400 font-medium'>
         {city}, {InternationalParams.getRegionNameFromRegionCode(countryCode)}
       </h3>
     </div>
