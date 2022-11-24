@@ -25,11 +25,11 @@ class AppStore {
     return this._atmosphericPressureUnits
   }
 
-  public set unitsSystem(value: WeatherUnitsSystem) {
+  public setUnitsSystem(value: WeatherUnitsSystem) {
     this._unitsSystem = value
   }
 
-  public set atmosphericPressureUnits(value: AtmosphericPressureUnits) {
+  public setAtmosphericPressureUnits(value: AtmosphericPressureUnits) {
     this._atmosphericPressureUnits = value
   }
 }

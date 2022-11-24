@@ -16,7 +16,7 @@ export const ListLayout = observer(() => {
   })
 
   return (
-    <div className='py-[12px]'>
+    <div>
       <ul>
         {ForecastStore.evenSelectedDailyForecastReports
           .slice(0, 4)

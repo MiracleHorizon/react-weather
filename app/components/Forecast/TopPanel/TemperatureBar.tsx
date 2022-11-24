@@ -15,7 +15,7 @@ export const TemperatureBar = observer(() => {
   return (
     <div className='flex flex-col items-center justify-center mb-[6px]'>
       <i className={`wi ${weatherIconClassName} text-[40px]`} />
-      <div className='flex'>
+      <div className='flex pl-[14px]'>
         <h2 className='block max-h-[85px] text-[60px] font-medium mobile:text-[50px]'>
           {temperature}
         </h2>

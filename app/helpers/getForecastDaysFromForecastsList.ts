@@ -1,4 +1,4 @@
-import { IDailyForecast } from 'types/weather'
+import { IDailyForecast } from 'models/weather/forecast/IDailyForecast'
 import { IWeatherReport } from 'models/weather/forecast/IWeatherReport'
 
 export const getForecastDaysFromForecastsList = (

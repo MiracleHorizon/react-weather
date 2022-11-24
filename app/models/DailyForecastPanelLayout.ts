@@ -1,5 +1,5 @@
 export enum DailyForecastPanelLayout {
-  LIST = 'list',
-  CARDS = 'cards',
-  CHART = 'chart',
+  LIST = 'List',
+  CARDS = 'Cards',
+  CHART = 'Chart',
 }

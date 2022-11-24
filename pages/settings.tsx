@@ -2,7 +2,7 @@ import { DefaultLayout } from 'layouts/Default'
 import { Settings } from 'components/Settings'
 
 const SettingsPage = () => (
-  <DefaultLayout title='Setting'>
+  <DefaultLayout title='Settings'>
     <Settings />
   </DefaultLayout>
 )

@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import ForecastStore from 'stores/ForecastStore'
 import { DateHandler } from 'modules/DateHandler'
 import { WeatherReport } from 'modules/weather/WeatherReport'
-import { IDailyForecast } from 'types/weather'
+import { IDailyForecast } from 'models/weather/forecast/IDailyForecast'
 
 export const ForecastItem: FC<IDailyForecast> = observer(
   ({ identifier, data }) => {

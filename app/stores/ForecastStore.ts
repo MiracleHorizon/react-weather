@@ -4,7 +4,7 @@ import { IFiveDayForecastResponse } from 'models/api/responses/IFiveDayForecastR
 import { getForecastDaysFromForecastsList } from 'helpers/getForecastDaysFromForecastsList'
 import { getEvenForecastReports } from 'helpers/getEvenForecastReports'
 import { IWeatherReport } from 'models/weather/forecast/IWeatherReport'
-import { IDailyForecast } from 'types/weather'
+import { IDailyForecast } from 'models/weather/forecast/IDailyForecast'
 
 class ForecastStore {
   private _forecast: IFiveDayForecastResponse = {} as IFiveDayForecastResponse //todo переработать
@@ -95,6 +95,7 @@ class ForecastStore {
     this.setSelectedDailyForecast(this.forecastDays[prevDailyForecastIndex])
   }
 
+  // todo сделать переключение только четными элементами
   public setNextDailyForecastReport() {
     const forecastDataLength = this.selectedDailyForecast.data.length
     let nextDailyForecastReportIndex = this.selectedDailyForecastReportIndex + 1

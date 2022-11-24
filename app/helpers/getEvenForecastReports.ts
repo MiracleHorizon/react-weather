@@ -1,4 +1,4 @@
-import { IDailyForecast } from 'types/weather'
+import { IDailyForecast } from 'models/weather/forecast/IDailyForecast'
 
 export const getEvenForecastReports = (dailyForecast: IDailyForecast) => {
   const reports = dailyForecast.data

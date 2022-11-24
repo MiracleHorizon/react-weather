@@ -1,4 +1,4 @@
 export enum AtmosphericPressureUnits {
-  PASCAL = 'pascal',
-  MILLIMETRES_OF_MERCURY = 'millimetres of mercury',
+  PASCAL = 'Pascal',
+  MILLIMETRES_OF_MERCURY = 'Millimetres of mercury',
 }
