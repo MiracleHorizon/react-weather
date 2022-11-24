@@ -15,18 +15,19 @@ export const DefaultLayoutFooter = () => {
   return (
     <footer className='w-screen mt-auto'>
       <nav className='h-full flex items-center justify-between px-[32px] pt-[24px] pb-[28px] mobile:px-[18px]'>
-        <Link
-          href='/'
+        <div
           className={classNames(
-            'flex items-center justify-center font-medium text-[16px] text-gray-400',
+            'font-medium text-[16px] text-gray-400',
             asPath === '/'
               ? 'fill-gray-600 text-gray-600'
               : 'fill-gray-300 text-gray-300'
           )}
         >
-          <HomeSvg />
-          <span className='ml-[4px]'>Home</span>
-        </Link>
+          <Link href='/' className='flex items-center justify-center'>
+            <HomeSvg />
+            <span className='ml-[4px]'>Home</span>
+          </Link>
+        </div>
         <div className='flex'>
           {navigationObjects.map(({ path, icon }, index) => (
             <Link

@@ -19,7 +19,7 @@ export const TemperatureBar = observer(() => {
         <h2 className='block max-h-[85px] text-[60px] font-medium mobile:text-[50px]'>
           {temperature}
         </h2>
-        <span className='text-[36px] font-light pt-[6px]'>
+        <span className='text-[36px] font-light ml-[3px]'>
           {TEMPERATURE_DEGREE_SIGN}
         </span>
       </div>

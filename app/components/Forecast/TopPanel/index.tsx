@@ -6,13 +6,13 @@ import { TemperatureBar } from './TemperatureBar'
 import { WeatherInfoPanel } from 'components/WeatherInfoPanel'
 
 export const ForecastTopPanel = observer(() => {
-  const { setSelectedDailyForecastReport } = ForecastStore
+  const { selectedDailyForecastReport } = ForecastStore
 
   return (
     <div className='pb-[16px]'>
       <TemperatureBar />
       <LocationBar />
-      {/*<WeatherInfoPanel {...selectedDailyForecastSegment} />*/}
+      {/*<WeatherInfoPanel {...selectedDailyForecastReport} />*/}
     </div>
   )
 })

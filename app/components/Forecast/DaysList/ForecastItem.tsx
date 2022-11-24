@@ -13,10 +13,9 @@ export const ForecastItem: FC<IDailyForecast> = observer(
     const { selectedDailyForecast } = ForecastStore
     const isSelected = selectedDailyForecast.identifier === identifier
 
-    const { weatherCondition, weatherIconClassName } = useMemo(
-      () => new WeatherReport(data[0]),
-      [data]
-    )
+    const { weatherIconClassName } = useMemo(() => {
+      return new WeatherReport(data[0])
+    }, [data])
 
     const dateHandler = useMemo(() => new DateHandler(dateString), [dateString])
 
@@ -32,7 +31,7 @@ export const ForecastItem: FC<IDailyForecast> = observer(
           ForecastStore.setSelectedDailyForecast({ identifier, data })
         }
       >
-        <i className={`wi text-[24px] ${weatherIconClassName}`} />
+        <i className={`wi ${weatherIconClassName} text-[24px]`} />
         <span className='font-semibold text-[18px] mt-[12px]'>
           {dateHandler.getDayOfTheWeek()[0]}
         </span>

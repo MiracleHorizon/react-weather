@@ -14,6 +14,7 @@ export class WeatherReport {
     return date.getHours()
   }
 
+  // todo проверить есть ли нативный метод для такого формата часов
   public get hoursTimeString() {
     const date = new Date(this._weatherReport.dt_txt)
     const hours = date.getHours()
@@ -22,7 +23,7 @@ export class WeatherReport {
   }
 
   public get isDay() {
-    return this.hoursTime >= 0 && this.hoursTime <= 6
+    return !(this.hoursTime >= 0 && this.hoursTime < 6)
   }
 
   public get weatherCondition() {
