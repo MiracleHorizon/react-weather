@@ -16,7 +16,7 @@ export const ForecastDaysList = observer(() => {
   })
 
   return (
-    <footer className='px-[34px] mobile:px-[18px] mt-auto'>
+    <footer className='px-[34px] sm-max:px-[18px] mt-auto'>
       <ul className='flex justify-between'>
         {ForecastStore.forecastDays.map(dailyForecast => (
           <ForecastItem key={dailyForecast.identifier} {...dailyForecast} />

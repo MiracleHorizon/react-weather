@@ -1,15 +1,21 @@
 import { NextPage } from 'next'
 
-import { DefaultLayout } from 'layouts/Default'
+import CurrentWeatherStore from 'stores/CurrentWeatherStore'
 import { WeatherService } from 'services/WeatherService'
-import { ICurrentWeatherResponse } from 'models/api/responses/ICurrentWeatherResponse'
+import { ICurrentWeatherReport } from 'models/weather/reports/ICurrentWeatherReport'
+import { DefaultLayout } from '../app/layouts/Default'
 
-const HomePage: NextPage<{ weatherResponse: ICurrentWeatherResponse }> = ({
+const HomePage: NextPage<{ weatherResponse: ICurrentWeatherReport }> = ({
   weatherResponse,
 }) => {
+  CurrentWeatherStore.weather = weatherResponse
+
+  console.log(weatherResponse)
+  if (!CurrentWeatherStore.weather) return null
+
   return (
     <DefaultLayout title='Current Weather'>
-      <div className='px-[24px] bg-gray-50'></div>
+      <div></div>
     </DefaultLayout>
   )
 }

@@ -14,7 +14,7 @@ export const DefaultLayoutFooter = () => {
 
   return (
     <footer className='w-screen mt-auto'>
-      <nav className='h-full flex items-center justify-between px-[32px] pt-[24px] pb-[28px] mobile:px-[18px]'>
+      <nav className='h-full flex items-center justify-between px-[32px] pt-[16px] pb-[28px] sm-max:px-[18px]'>
         <div
           className={classNames(
             'font-medium text-[16px] text-gray-400',

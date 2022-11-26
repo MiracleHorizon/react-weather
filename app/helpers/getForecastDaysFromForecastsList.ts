@@ -1,8 +1,8 @@
-import { IDailyForecast } from 'models/weather/forecast/IDailyForecast'
-import { IWeatherReport } from 'models/weather/forecast/IWeatherReport'
+import { IDailyForecast } from 'models/weather/IDailyForecast'
+import { IForecastWeatherReport } from 'models/weather/reports/IForecastWeatherReport'
 
 export const getForecastDaysFromForecastsList = (
-  list: IWeatherReport[]
+  list: IForecastWeatherReport[]
 ): IDailyForecast[] => {
   const dates = list.map(segment => new Date(segment.dt_txt).getDate())
   const uniqueDates = Array.from(new Set(dates))

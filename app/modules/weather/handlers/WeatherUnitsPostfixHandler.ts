@@ -1,8 +1,8 @@
 import AppStore from 'stores/AppStore'
-import { WeatherUnitsSystem } from 'models/WeatherUnitsSystem'
-import { AtmosphericPressureUnits } from 'models/AtmosphericPressureUnits'
+import { WeatherUnitsSystem } from 'models/enums/WeatherUnitsSystem'
+import { AtmosphericPressureUnits } from 'models/enums/AtmosphericPressureUnits'
 
-export class WeatherUnitsPostfix {
+export class WeatherUnitsPostfixHandler {
   private static _units = AppStore.unitsSystem
   private static _atmosphericPressureUnits = AppStore.atmosphericPressureUnits
 

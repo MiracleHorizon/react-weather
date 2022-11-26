@@ -15,7 +15,21 @@ module.exports = {
       },
     },
     screens: {
-      mobile: { max: '390px' },
+      'sm-max': {
+        max: '576px',
+      },
+      'md-max': {
+        max: '768px',
+      },
+      'lg-max': {
+        max: '992px',
+      },
+      'xl-max': {
+        max: '1200px',
+      },
+      'xxl-max': {
+        max: '1400px',
+      },
     },
   },
   plugins: [],

@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 import AppStore from 'stores/AppStore'
-import { ICurrentWeatherResponse } from 'models/api/responses/ICurrentWeatherResponse'
-import { IFiveDayForecastResponse } from 'models/api/responses/IFiveDayForecastResponse'
+import { ICurrentWeatherReport } from 'models/weather/reports/ICurrentWeatherReport'
+import { IFiveDayForecastResponse } from 'models/api/IFiveDayForecastResponse'
 
 const api = axios.create({
   baseURL: 'https://api.openweathermap.org/data/2.5',
@@ -14,11 +14,11 @@ export class WeatherService {
   private static _apiKey = `appid=${process.env.API_KEY}`
   private static _baseParams = `${this._city}&${this._units}&${this._apiKey}`
 
-  public static async fetchCurrentWeather(): Promise<ICurrentWeatherResponse> {
+  public static async fetchCurrentWeather(): Promise<ICurrentWeatherReport> {
     try {
       // Получение данных о текущей погоде.
       const url = `/weather?${this._baseParams}`
-      const { data } = await api.get<ICurrentWeatherResponse>(url)
+      const { data } = await api.get<ICurrentWeatherReport>(url)
 
       return data
     } catch (e) {

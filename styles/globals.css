@@ -6,6 +6,15 @@
 
 /*TODO Проверить необходимость импорта компонентов*/
 
+:root {
+  --screen-breakpoint-xs: 0;
+  --screen-breakpoint-sm: 576px;
+  --screen-breakpoint-md: 768px;
+  --screen-breakpoint-lg: 992px;
+  --screen-breakpoint-xl: 1200px;
+  --screen-breakpoint-xxl: 1400px;
+}
+
 html,
 body {
   padding: 0;

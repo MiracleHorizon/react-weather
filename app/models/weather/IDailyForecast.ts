@@ -1,6 +1,6 @@
-import { IWeatherReport } from 'models/weather/forecast/IWeatherReport'
+import { IForecastWeatherReport } from './reports/IForecastWeatherReport'
 
 export interface IDailyForecast {
   identifier: number // Timestamp первого временного отрезка дневного прогноза.
-  data: IWeatherReport[]
+  data: IForecastWeatherReport[]
 }

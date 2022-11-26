@@ -3,12 +3,12 @@ import { observer } from 'mobx-react-lite'
 import classNames from 'classnames'
 
 import ForecastStore from 'stores/ForecastStore'
-import { WeatherReport } from 'modules/weather/WeatherReport'
-import { IWeatherReport } from 'models/weather/forecast/IWeatherReport'
-import { TEMPERATURE_DEGREE_SIGN } from 'constants/weather'
+import { WeatherReport } from 'modules/weather/reports/WeatherReport'
+import { IForecastWeatherReport } from 'models/weather/reports/IForecastWeatherReport'
+import { DEGREE_SIGN } from 'constants/weather'
 
-export const CardsLayoutItem: FC<IWeatherReport & { index: number }> = observer(
-  ({ index, ...report }) => {
+export const CardsLayoutItem: FC<IForecastWeatherReport & { index: number }> =
+  observer(({ index, ...report }) => {
     const { hoursTimeString, temperature } = useMemo(() => {
       return new WeatherReport(report)
     }, [report])
@@ -38,11 +38,10 @@ export const CardsLayoutItem: FC<IWeatherReport & { index: number }> = observer(
           )}
         >
           <div className='flex mt-auto'>
-            <span>{temperature}</span>
-            <span>{TEMPERATURE_DEGREE_SIGN}</span>
+            <span>{temperature.temperatureValue}</span>
+            <span>{DEGREE_SIGN}</span>
           </div>
         </div>
       </div>
     )
-  }
-)
+  })

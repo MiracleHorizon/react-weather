@@ -4,14 +4,14 @@ import classNames from 'classnames'
 
 import ForecastStore from 'stores/ForecastStore'
 import { TriangleSvg } from 'components/ui/svg'
-import { WeatherReport } from 'modules/weather/WeatherReport'
-import { IWeatherReport } from 'models/weather/forecast/IWeatherReport'
 import { capitalizeString } from 'helpers/capitalizeString'
-import { TEMPERATURE_DEGREE_SIGN } from 'constants/weather'
+import { DEGREE_SIGN } from 'constants/weather'
+import { ForecastWeatherReport } from '../../../../modules/weather/reports/ForecastWeatherReport'
+import { IForecastWeatherReport } from '../../../../models/weather/reports/IForecastWeatherReport'
 
-export const ListLayoutItem: FC<IWeatherReport> = observer(report => {
+export const ListLayoutItem: FC<IForecastWeatherReport> = observer(report => {
   const { hoursTime, temperature, weatherCondition } = useMemo(() => {
-    return new WeatherReport(report)
+    return new ForecastWeatherReport(report)
   }, [report])
 
   const isSelected =
@@ -26,14 +26,14 @@ export const ListLayoutItem: FC<IWeatherReport> = observer(report => {
       onClick={() => ForecastStore.setSelectedDailyForecastReport(report)}
     >
       {isSelected && <TriangleSvg className='rotate-90 w-[14px] h-[14px]' />}
-      <span className='flex items-center justify-center w-[30px] mr-[34px] text-[14px] font-bold'>
+      <span className='flex items-center justify-center w-[30px] ml-[6px] text-[14px] font-bold'>
         {hoursTime}
       </span>
-      <span>{capitalizeString(weatherCondition)}</span>
+      <span className='ml-[34px]'>{capitalizeString(weatherCondition)}</span>
       <div className='flex ml-auto'>
-        <span>{temperature}</span>
+        <span>{temperature.temperatureValue}</span>
         <span className='text-gray-500 text-[14px] pt-[2px] ml-px'>
-          {TEMPERATURE_DEGREE_SIGN}
+          {DEGREE_SIGN}
         </span>
       </div>
     </div>

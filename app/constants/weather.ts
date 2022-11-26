@@ -1,1 +1,1 @@
-export const TEMPERATURE_DEGREE_SIGN = '°'
+export const DEGREE_SIGN = '°'

@@ -1,7 +1,7 @@
 import AppStore from 'stores/AppStore'
 import { Dropdown } from 'components/ui/Dropdown'
-import { WeatherUnitsSystem } from 'models/WeatherUnitsSystem'
-import { AtmosphericPressureUnits } from '../../models/AtmosphericPressureUnits'
+import { WeatherUnitsSystem } from 'models/enums/WeatherUnitsSystem'
+import { AtmosphericPressureUnits } from '../../models/enums/AtmosphericPressureUnits'
 
 export const UnitsSettings = () => {
   return (

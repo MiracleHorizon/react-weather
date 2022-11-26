@@ -3,9 +3,10 @@ import { observer } from 'mobx-react-lite'
 import classNames from 'classnames'
 
 import ForecastStore from 'stores/ForecastStore'
-import { DateHandler } from 'modules/DateHandler'
-import { WeatherReport } from 'modules/weather/WeatherReport'
-import { IDailyForecast } from 'models/weather/forecast/IDailyForecast'
+import { DateHandler } from 'modules/weather/handlers/DateHandler'
+import { WeatherReport } from 'modules/weather/reports/WeatherReport'
+import { IDailyForecast } from 'models/weather/IDailyForecast'
+import styles from './ForecastItem.module.css'
 
 export const ForecastItem: FC<IDailyForecast> = observer(
   ({ identifier, data }) => {
@@ -13,7 +14,7 @@ export const ForecastItem: FC<IDailyForecast> = observer(
     const { selectedDailyForecast } = ForecastStore
     const isSelected = selectedDailyForecast.identifier === identifier
 
-    const { weatherIconClassName } = useMemo(() => {
+    const { iconClassName } = useMemo(() => {
       return new WeatherReport(data[0])
     }, [data])
 
@@ -22,16 +23,15 @@ export const ForecastItem: FC<IDailyForecast> = observer(
     return (
       <li
         className={classNames(
+          styles.item,
           'flex flex-col items-center justify-center cursor-pointer',
-          {
-            ['text-gray-400']: !isSelected,
-          }
+          { ['text-gray-400']: !isSelected }
         )}
         onClick={() =>
           ForecastStore.setSelectedDailyForecast({ identifier, data })
         }
       >
-        <i className={`wi ${weatherIconClassName} text-[24px]`} />
+        <i className={`wi ${iconClassName}`} />
         <span className='font-semibold text-[18px] mt-[12px]'>
           {dateHandler.getDayOfTheWeek()[0]}
         </span>

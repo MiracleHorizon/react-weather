@@ -16,14 +16,12 @@ export const ListLayout = observer(() => {
   })
 
   return (
-    <div>
-      <ul>
-        {ForecastStore.evenSelectedDailyForecastReports
-          .slice(0, 4)
-          .map(report => (
-            <ListLayoutItem key={report.dt_txt} {...report} />
-          ))}
-      </ul>
-    </div>
+    <ul>
+      {ForecastStore.evenSelectedDailyForecastReports
+        .slice(0, 4)
+        .map(report => (
+          <ListLayoutItem key={report.dt_txt} {...report} />
+        ))}
+    </ul>
   )
 })

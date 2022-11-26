@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react'
 import { useOnClickOutside } from 'usehooks-ts'
 
+import { ModalWrapper } from '../ModalWrapper'
 import { DropdownItem } from './DropdownItem'
 import { ArrowDownSvg } from 'components/ui/svg'
-import { ModalWrapper } from '../ModalWrapper'
 
 export const Dropdown = <T,>({
   items,

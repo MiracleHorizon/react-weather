@@ -2,8 +2,8 @@ import { observer } from 'mobx-react-lite'
 
 import UiStore from 'stores/UiStore'
 import { Dropdown } from 'components/ui/Dropdown'
-import { Theme } from 'models/Theme'
-import { DailyForecastPanelLayout } from 'models/DailyForecastPanelLayout'
+import { Theme } from 'models/enums/Theme'
+import { DailyForecastPanelLayout } from 'models/enums/DailyForecastPanelLayout'
 
 // const options = [
 //   {

@@ -1,4 +1,4 @@
-export interface IMainForecastInfo {
+export interface IMainWeatherInfo {
   temp: number
   feels_like: number
   temp_min: number

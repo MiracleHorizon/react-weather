@@ -1,14 +1,14 @@
 import { makeAutoObservable } from 'mobx'
 
-import { Theme } from 'models/Theme'
-import { DailyForecastPanelLayout } from 'models/DailyForecastPanelLayout'
+import { Theme } from 'models/enums/Theme'
+import { DailyForecastPanelLayout } from 'models/enums/DailyForecastPanelLayout'
 
 class UiStore {
   private _theme = Theme.SYSTEM
+  private _dailyForecastPanelLayout = DailyForecastPanelLayout.LIST
   // private _dailyForecastPanelLayout = localStorage.getItem(
   //   'dailyForecastPanelLayout'
   // ) as DailyForecastPanelLayout.LIST
-  private _dailyForecastPanelLayout = DailyForecastPanelLayout.LIST
 
   constructor() {
     makeAutoObservable(this)

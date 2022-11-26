@@ -1,8 +1,8 @@
 export class DateHandler {
   private _date: Date = new Date()
 
-  constructor(dateString: string) {
-    this._date = new Date(dateString)
+  constructor(dateValue: string | number) {
+    this._date = new Date(dateValue)
   }
 
   public getTimesOfDay(): string {

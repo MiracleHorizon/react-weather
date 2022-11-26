@@ -1,15 +1,15 @@
 import { makeAutoObservable } from 'mobx'
 
-import { IFiveDayForecastResponse } from 'models/api/responses/IFiveDayForecastResponse'
+import { IFiveDayForecastResponse } from 'models/api/IFiveDayForecastResponse'
 import { getForecastDaysFromForecastsList } from 'helpers/getForecastDaysFromForecastsList'
 import { getEvenForecastReports } from 'helpers/getEvenForecastReports'
-import { IWeatherReport } from 'models/weather/forecast/IWeatherReport'
-import { IDailyForecast } from 'models/weather/forecast/IDailyForecast'
+import { IForecastWeatherReport } from 'models/weather/reports/IForecastWeatherReport'
+import { IDailyForecast } from 'models/weather/IDailyForecast'
 
 class ForecastStore {
   private _forecast: IFiveDayForecastResponse = {} as IFiveDayForecastResponse //todo переработать
   private _selectedDailyForecast: IDailyForecast | null = null
-  private _selectedDailyForecastReport: IWeatherReport | null = null
+  private _selectedDailyForecastReport: IForecastWeatherReport | null = null
 
   constructor() {
     makeAutoObservable(this)
@@ -71,7 +71,9 @@ class ForecastStore {
     this._selectedDailyForecast = dailyForecast
   }
 
-  public setSelectedDailyForecastReport(dailyForecastReport: IWeatherReport) {
+  public setSelectedDailyForecastReport(
+    dailyForecastReport: IForecastWeatherReport
+  ) {
     this._selectedDailyForecastReport = dailyForecastReport
   }
 
