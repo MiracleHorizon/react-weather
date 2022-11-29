@@ -1,13 +1,12 @@
 import { makeAutoObservable } from 'mobx'
 
-import { WeatherUnitsSystem } from 'models/enums/WeatherUnitsSystem'
-import { AtmosphericPressureUnits } from 'models/enums/AtmosphericPressureUnits'
+import { WeatherUnitsSystem } from 'models/weather/enums/WeatherUnitsSystem'
+import { AtmosphericPressureUnits } from 'models/weather/enums/AtmosphericPressureUnits'
 
 class AppStore {
-  private _city = 'New York'
+  private _city = 'Norilsk'
   private _unitsSystem = WeatherUnitsSystem.METRIC
-  private _atmosphericPressureUnits =
-    AtmosphericPressureUnits.MILLIMETRES_OF_MERCURY
+  private _atmosphericPressureUnits = AtmosphericPressureUnits.PASCAL
 
   constructor() {
     makeAutoObservable(this)

@@ -1,23 +1,23 @@
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import classNames from 'classnames'
+import Link from 'next/link'
 
 import { CogSvg, HomeSvg } from 'components/ui/svg'
 
-const navigationObjects = [
-  { path: '/forecast', icon: <i className='wi wi-day-cloudy' /> },
-  { path: '/settings', icon: <CogSvg /> },
+const NAVIGATION_OBJECTS = [
+  { href: '/forecast', IconElement: <i className='wi wi-day-cloudy-gusts' /> },
+  { href: '/settings', IconElement: <CogSvg /> },
 ]
 
 export const DefaultLayoutFooter = () => {
   const { asPath } = useRouter()
 
   return (
-    <footer className='w-screen mt-auto'>
-      <nav className='h-full flex items-center justify-between px-[32px] pt-[16px] pb-[28px] sm-max:px-[18px]'>
+    <footer className='w-screen mt-auto px-[26px]'>
+      <nav className='flex items-center justify-between h-[70px]'>
         <div
           className={classNames(
-            'font-medium text-[16px] text-gray-400',
+            'text-[16px] ',
             asPath === '/'
               ? 'fill-gray-600 text-gray-600'
               : 'fill-gray-300 text-gray-300'
@@ -25,24 +25,22 @@ export const DefaultLayoutFooter = () => {
         >
           <Link href='/' className='flex items-center justify-center'>
             <HomeSvg />
-            <span className='ml-[4px]'>Home</span>
+            <span className='ml-[6px] mb-[4px]'>Home</span>
           </Link>
         </div>
-        <div className='flex'>
-          {navigationObjects.map(({ path, icon }, index) => (
+        <div className='flex items-center justify-center'>
+          {NAVIGATION_OBJECTS.map(({ href, IconElement }, index) => (
             <Link
-              key={path}
-              href={path}
+              key={href}
+              href={href}
               className={classNames(
-                asPath !== path ? 'text-gray-300' : 'text-gray-600',
-                asPath !== path ? 'stroke-gray-300' : 'stroke-gray-600',
-                asPath !== path ? 'fill-gray-300' : 'fill-gray-600',
-                {
-                  ['ml-[16px]']: index === navigationObjects.length - 1,
-                }
+                asPath === href
+                  ? 'text-gray-600 stroke-gray-600 fill-gray-600'
+                  : 'text-gray-300 stroke-gray-300 fill-gray-300',
+                { ['ml-[16px]']: index === NAVIGATION_OBJECTS.length - 1 }
               )}
             >
-              {icon}
+              {IconElement}
             </Link>
           ))}
         </div>

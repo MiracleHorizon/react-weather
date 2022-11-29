@@ -1,8 +1,11 @@
 import { Temperature } from 'modules/weather/Temperature'
 import { WeatherIconsHandler } from 'modules/weather/handlers/WeatherIconsHandler'
 import { WeatherUnitsPostfixHandler } from 'modules/weather/handlers/WeatherUnitsPostfixHandler'
-import { getTempObjectFromMainWeatherInfo } from 'helpers/getTempObjectFromMainWeatherInfo'
 import { IWeatherReport } from 'models/weather/reports/IWeatherReport'
+import { IAdditionalWeatherInfoItem } from 'models/weather/IAdditionalWeatherInfoItem'
+import { getWindDirection } from 'helpers/getWindDirection'
+import { getFixedNumberValue } from 'helpers/getFixedNumberValue'
+import { getTempObjectFromMainWeatherInfo } from 'helpers/getTempObjectFromMainWeatherInfo'
 
 export class WeatherReport {
   private readonly _report = {} as IWeatherReport
@@ -51,25 +54,27 @@ export class WeatherReport {
     return hours >= 0 && hours < 6
   }
 
-  public get additionalInfoArray() {
-    const { pressure, humidity } = this._report.main
-    const { speed: windSpeed } = this._report.wind
-    const { visibility } = this._report
+  public get additionalInfoArray(): IAdditionalWeatherInfoItem[] {
+    const {
+      visibility,
+      main: { pressure, humidity },
+      wind: { speed: windSpeed, deg: windDirectionDegrees },
+    } = this._report
 
     return [
       {
-        title: 'Wind',
-        value: windSpeed,
+        title: `Wind (${getWindDirection(windDirectionDegrees)})`,
+        value: getFixedNumberValue(windSpeed),
         postfix: this._unitsPostfixHandler.getWindSpeedUnitsPostfix(),
       },
       {
         title: 'Visibility',
-        value: visibility,
+        value: getFixedNumberValue(visibility / 1000), // todo дополнить функциональность исходя из выбранной системы измерения, добавить округления (см. Норильск)
         postfix: this._unitsPostfixHandler.getVisibilityUnitsPostfix(),
       },
       {
         title: 'Pressure',
-        value: pressure,
+        value: pressure, // todo мегапаскали
         postfix: this._unitsPostfixHandler.getPressureUnitsPostfix(),
       },
       {

@@ -1,4 +1,4 @@
-import { WeatherCondition } from 'models/enums/WeatherCondition'
+import { WeatherCondition } from 'models/weather/enums/WeatherCondition'
 
 export interface IWeatherCondition {
   id: number

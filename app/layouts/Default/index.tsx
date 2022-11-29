@@ -1,17 +1,11 @@
 import { FC } from 'react'
 
-import { DefaultLayoutHeader } from './DefaultLayoutHeader'
 import { DefaultLayoutFooter } from './DefaultLayoutFooter'
+import { LayoutProps } from 'layouts/Layout.types'
 
-export const DefaultLayout: FC<Props> = ({ children, title }) => (
-  <div className='w-screen h-screen flex flex-col'>
-    <DefaultLayoutHeader title={title} />
+export const DefaultLayout: FC<LayoutProps> = ({ children }) => (
+  <div className='w-screen h-screen flex flex-col items-start'>
     {children}
     <DefaultLayoutFooter />
   </div>
 )
-
-interface Props {
-  children: JSX.Element
-  title: string
-}

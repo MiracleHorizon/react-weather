@@ -3,11 +3,13 @@ import axios from 'axios'
 import AppStore from 'stores/AppStore'
 import { ICurrentWeatherReport } from 'models/weather/reports/ICurrentWeatherReport'
 import { IFiveDayForecastResponse } from 'models/api/IFiveDayForecastResponse'
+import { OPEN_WEATHER_API_BASE_URL } from 'constants/api'
 
 const api = axios.create({
-  baseURL: 'https://api.openweathermap.org/data/2.5',
+  baseURL: OPEN_WEATHER_API_BASE_URL,
 })
 
+// lat={lat}&lon={lon}
 export class WeatherService {
   private static _city = `q=${AppStore.city}`
   private static _units = `units=${AppStore.unitsSystem.toLowerCase()}`

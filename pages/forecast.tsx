@@ -1,18 +1,14 @@
 import { NextPage } from 'next'
 
 import ForecastStore from 'stores/ForecastStore'
-import { WeatherForecast } from 'components/Forecast'
+import { Forecast } from 'components/pages/Forecast'
 import { WeatherService } from 'services/WeatherService'
 import { IFiveDayForecastResponse } from 'models/api/IFiveDayForecastResponse'
 
-const ForecastPage: NextPage<{
-  forecastResponse: IFiveDayForecastResponse
-}> = ({ forecastResponse }) => {
+const ForecastPage: NextPage<Props> = ({ forecastResponse }) => {
   ForecastStore.forecast = forecastResponse
 
-  console.log(forecastResponse)
-
-  return <WeatherForecast />
+  return <Forecast />
 }
 
 export default ForecastPage
@@ -25,4 +21,8 @@ export const getStaticProps = async () => {
       forecastResponse,
     },
   }
+}
+
+interface Props {
+  forecastResponse: IFiveDayForecastResponse
 }

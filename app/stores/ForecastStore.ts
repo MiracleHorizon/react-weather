@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 
 import { IFiveDayForecastResponse } from 'models/api/IFiveDayForecastResponse'
 import { getForecastDaysFromForecastsList } from 'helpers/getForecastDaysFromForecastsList'
-import { getEvenForecastReports } from 'helpers/getEvenForecastReports'
+import { getEvenArrayElements } from 'helpers/getEvenArrayElements'
 import { IForecastWeatherReport } from 'models/weather/reports/IForecastWeatherReport'
 import { IDailyForecast } from 'models/weather/IDailyForecast'
 
@@ -45,7 +45,7 @@ class ForecastStore {
   }
 
   public get evenSelectedDailyForecastReports() {
-    return getEvenForecastReports(this.selectedDailyForecast)
+    return getEvenArrayElements(this.selectedDailyForecast.data)
   }
 
   private get selectedDailyForecastIndex() {
@@ -69,6 +69,8 @@ class ForecastStore {
 
   public setSelectedDailyForecast(dailyForecast: IDailyForecast) {
     this._selectedDailyForecast = dailyForecast
+
+    this.setSelectedDailyForecastReport(dailyForecast.data[0])
   }
 
   public setSelectedDailyForecastReport(
@@ -121,6 +123,10 @@ class ForecastStore {
     this.setSelectedDailyForecastReport(
       this.selectedDailyForecast.data[prevDailyForecastReportIndex]
     )
+  }
+
+  public checkIsForecastSelected(forecastIdentifier: number) {
+    return this.selectedDailyForecast.identifier === forecastIdentifier
   }
 }
 
