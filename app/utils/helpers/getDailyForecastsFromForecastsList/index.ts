@@ -1,7 +1,7 @@
 import { IDailyForecast } from 'models/weather/IDailyForecast'
 import { IForecastWeatherReport } from 'models/weather/reports/IForecastWeatherReport'
 
-export const getForecastDaysFromForecastsList = (
+export const getDailyForecastsFromForecastsList = (
   list: IForecastWeatherReport[]
 ): IDailyForecast[] => {
   const dates = list.map(segment => new Date(segment.dt_txt).getDate())

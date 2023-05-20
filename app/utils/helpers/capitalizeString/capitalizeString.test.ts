@@ -1,4 +1,4 @@
-import { capitalizeString } from 'helpers/capitalizeString'
+import { capitalizeString } from 'utils/helpers/capitalizeString/index'
 
 describe('Функция capitalizeString должна вернуть:', () => {
   test('одно слово в формате "capitalize"', () => {

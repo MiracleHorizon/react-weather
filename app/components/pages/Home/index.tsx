@@ -7,7 +7,7 @@ export const Home = () => {
   const { location, iconClassName, temperature } = CurrentWeatherStore.weather
 
   return (
-    <DefaultLayout>
+    <DefaultLayout title='Home'>
       <main className='w-screen'>
         <section className='py-[14px]'>
           <TemperatureBar

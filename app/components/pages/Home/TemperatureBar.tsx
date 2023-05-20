@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { Temperature } from 'modules/weather/Temperature'
-import { DEGREE_SIGN } from 'constants/weather'
+import { DEGREE_SIGN } from 'utils/constants/weather'
 
 export const TemperatureBar: FC<Props> = ({ temperature, iconClassName }) => (
   <div className='w-full flex flex-col items-center justify-center'>

@@ -1,12 +1,12 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 import AppStore from 'stores/AppStore'
 import { ICurrentWeatherReport } from 'models/weather/reports/ICurrentWeatherReport'
 import { IFiveDayForecastResponse } from 'models/api/IFiveDayForecastResponse'
-import { OPEN_WEATHER_API_BASE_URL } from 'constants/api'
+import { OPEN_WEATHER_API_BASE_URL } from 'utils/constants/api'
 
 const api = axios.create({
-  baseURL: OPEN_WEATHER_API_BASE_URL,
+  baseURL: OPEN_WEATHER_API_BASE_URL
 })
 
 // lat={lat}&lon={lon}
@@ -28,7 +28,7 @@ export class WeatherService {
     }
   }
 
-  public static async fetchFiveDayForecast(): Promise<IFiveDayForecastResponse> {
+  public static async fetchFiveDayForecast(): Promise<IFiveDayForecastResponse | null> {
     try {
       // Получение прогноза погода на ближайшие пять дней с данными на каждые три часа.
       const url = `/forecast?${this._baseParams}`
@@ -36,7 +36,14 @@ export class WeatherService {
 
       return data
     } catch (e) {
-      throw new Error('err') // Todo Написать эксепшн
+      const { response, message } = e as unknown as AxiosError
+
+      // if (response?.status && response.status === 404) {
+      //   throw new Error('Локация не найдена.')
+      // } else {
+      //   throw new Error(message)
+      // }
+      return null
     }
   }
 }

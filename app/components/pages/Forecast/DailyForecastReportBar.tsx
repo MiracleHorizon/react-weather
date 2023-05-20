@@ -4,24 +4,18 @@ import classNames from 'classnames'
 
 import ForecastStore from 'stores/ForecastStore'
 import { AdditionalWeatherInfoPanel } from 'components/AdditionalWeatherInfoPanel'
-import { ForecastWeatherReport } from 'modules/weather/reports/ForecastWeatherReport'
-import { DEGREE_SIGN } from 'constants/weather'
+import { DEGREE_SIGN } from 'utils/constants/weather'
 
-export const DailyForecastReportSection = observer(() => {
-  const { selectedDailyForecastReport } = ForecastStore
-
+export const DailyForecastReportBar = observer(() => {
   const { temperature, iconClassName, date, additionalInfoArray } =
-    useMemo(() => {
-      // TODO Добавить один единственный инстанс класса в стор
-      return new ForecastWeatherReport(selectedDailyForecastReport)
-    }, [selectedDailyForecastReport])
+    ForecastStore.selectedWeatherReport
 
   const temperatureData = useMemo(() => {
     return [temperature.value, temperature.feelsLike]
   }, [temperature])
 
   return (
-    <section className='mt-[30px]'>
+    <div className='mt-[30px]'>
       <div className='flex items-center justify-between mb-[30px]'>
         <div className='flex items-center'>
           <i
@@ -57,6 +51,6 @@ export const DailyForecastReportSection = observer(() => {
         </div>
       </div>
       <AdditionalWeatherInfoPanel infoArray={additionalInfoArray} />
-    </section>
+    </div>
   )
 })

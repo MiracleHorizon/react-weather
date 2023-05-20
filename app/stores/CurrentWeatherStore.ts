@@ -4,7 +4,7 @@ import { CurrentWeatherReport } from 'modules/weather/reports/CurrentWeatherRepo
 import { ICurrentWeatherReport } from 'models/weather/reports/ICurrentWeatherReport'
 
 class CurrentWeatherStore {
-  private _weather = {} as CurrentWeatherReport // todo доработать
+  private _weather = {} as CurrentWeatherReport
 
   constructor() {
     makeAutoObservable(this)

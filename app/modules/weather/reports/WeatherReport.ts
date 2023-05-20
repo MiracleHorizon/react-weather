@@ -3,9 +3,8 @@ import { WeatherIconsHandler } from 'modules/weather/handlers/WeatherIconsHandle
 import { WeatherUnitsPostfixHandler } from 'modules/weather/handlers/WeatherUnitsPostfixHandler'
 import { IWeatherReport } from 'models/weather/reports/IWeatherReport'
 import { IAdditionalWeatherInfoItem } from 'models/weather/IAdditionalWeatherInfoItem'
-import { getWindDirection } from 'helpers/getWindDirection'
-import { getFixedNumberValue } from 'helpers/getFixedNumberValue'
-import { getTempObjectFromMainWeatherInfo } from 'helpers/getTempObjectFromMainWeatherInfo'
+import { getFixedNumberValue } from 'utils/helpers/getFixedNumberValue'
+import { getTempObjectFromMainWeatherInfo } from 'utils/helpers/getTempObjectFromMainWeatherInfo'
 
 export class WeatherReport {
   private readonly _report = {} as IWeatherReport
@@ -58,30 +57,30 @@ export class WeatherReport {
     const {
       visibility,
       main: { pressure, humidity },
-      wind: { speed: windSpeed, deg: windDirectionDegrees },
+      wind: { speed: windSpeed }
     } = this._report
 
     return [
       {
-        title: `Wind (${getWindDirection(windDirectionDegrees)})`,
+        title: 'Wind',
         value: getFixedNumberValue(windSpeed),
-        postfix: this._unitsPostfixHandler.getWindSpeedUnitsPostfix(),
+        postfix: this._unitsPostfixHandler.getWindSpeedUnitsPostfix()
       },
       {
         title: 'Visibility',
         value: getFixedNumberValue(visibility / 1000), // todo дополнить функциональность исходя из выбранной системы измерения, добавить округления (см. Норильск)
-        postfix: this._unitsPostfixHandler.getVisibilityUnitsPostfix(),
+        postfix: this._unitsPostfixHandler.getVisibilityUnitsPostfix()
       },
       {
         title: 'Pressure',
         value: pressure, // todo мегапаскали
-        postfix: this._unitsPostfixHandler.getPressureUnitsPostfix(),
+        postfix: this._unitsPostfixHandler.getPressureUnitsPostfix()
       },
       {
         title: 'Humidity',
         value: humidity,
-        postfix: '%',
-      },
+        postfix: '%'
+      }
     ]
   }
 }

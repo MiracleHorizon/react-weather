@@ -1,4 +1,4 @@
-import { getWindDirection } from 'helpers/getWindDirection'
+import { getWindDirection } from 'utils/helpers/getWindDirection/index'
 
 describe('Функция getWindDirection должна вернуть:', () => {
   test('корректное направление ветра', () => {

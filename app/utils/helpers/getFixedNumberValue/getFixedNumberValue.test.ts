@@ -1,4 +1,4 @@
-import { getFixedNumberValue } from 'helpers/getFixedNumberValue'
+import { getFixedNumberValue } from 'utils/helpers/getFixedNumberValue/index'
 
 test(`Функция getFixedNumberValue должна вернуть округлённое до одного знака 
 после запятой значение; Если после запятой единственный знак 0 - 

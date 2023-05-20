@@ -6,7 +6,7 @@ import { DailyForecast } from './DailyForecast'
 import { ArrowKey } from 'models/enums/ArrowKey'
 
 export const ListOfDailyForecasts = observer(() => {
-  const { forecastDays } = ForecastStore
+  const { dailyForecasts } = ForecastStore
 
   useEventListener('keydown', e => {
     if (e.code === ArrowKey.LEFT || e.code === 'KeyA') {
@@ -19,12 +19,12 @@ export const ListOfDailyForecasts = observer(() => {
   })
 
   return (
-    <div className='w-screen mt-auto px-[26px] pb-[4px] pt-[12px]'>
+    <section className='w-screen px-[26px] pb-[4px] pt-[12px]'>
       <ul className='flex justify-between'>
-        {forecastDays.map(dailyForecast => (
+        {dailyForecasts.map(dailyForecast => (
           <DailyForecast key={dailyForecast.identifier} {...dailyForecast} />
         ))}
       </ul>
-    </div>
+    </section>
   )
 })

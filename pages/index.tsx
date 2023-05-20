@@ -18,8 +18,8 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      currentWeatherResponse,
-    },
+      currentWeatherResponse
+    }
   }
 }
 

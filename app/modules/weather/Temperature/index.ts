@@ -1,5 +1,5 @@
 import { ITemperature } from 'models/weather/ITemperature'
-import { getFixedNumberValue } from 'helpers/getFixedNumberValue'
+import { getFixedNumberValue } from 'utils/helpers/getFixedNumberValue'
 
 // todo добавить ограничение на возможную температуру.
 export class Temperature {
@@ -25,7 +25,7 @@ export class Temperature {
     return [
       { title: 'Min', value: this.minimum },
       { title: 'Max', value: this.maximum },
-      { title: 'Feels like', value: this.feelsLike },
+      { title: 'Feels like', value: this.feelsLike }
     ]
   }
 }

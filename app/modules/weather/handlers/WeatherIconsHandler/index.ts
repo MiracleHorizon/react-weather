@@ -64,7 +64,7 @@ export class WeatherIconsHandler {
   }
 
   private get moderateRainIcon() {
-    return `wi-${this._isDay ? 'day-storm-showers' : 'wi-storm-showers'}`
+    return `wi-${this._isDay ? 'day-storm-showers' : 'storm-showers'}`
   }
 
   private get thunderstormIcon() {

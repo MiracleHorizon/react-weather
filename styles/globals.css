@@ -5,29 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/*TODO Проверить необходимость импорта компонентов*/
-
-:root {
-  --screen-breakpoint-xs: 0;
-  --screen-breakpoint-sm: 576px;
-  --screen-breakpoint-md: 768px;
-  --screen-breakpoint-lg: 992px;
-  --screen-breakpoint-xl: 1200px;
-  --screen-breakpoint-xxl: 1400px;
-}
-
 html,
 body {
-  padding: 0;
-  margin: 0;
   font-family: 'Rubik', sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
 }

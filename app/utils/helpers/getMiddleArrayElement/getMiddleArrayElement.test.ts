@@ -1,4 +1,4 @@
-import { getMiddleArrayElement } from 'helpers/getMiddleArrayElement'
+import { getMiddleArrayElement } from 'utils/helpers/getMiddleArrayElement/index'
 
 describe('Функция getMiddleArrayElement должна вернуть:', () => {
   test('корректный средний элемент массива', () => {

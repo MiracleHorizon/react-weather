@@ -4,7 +4,7 @@ import { WeatherUnitsSystem } from 'models/weather/enums/WeatherUnitsSystem'
 import { AtmosphericPressureUnits } from 'models/weather/enums/AtmosphericPressureUnits'
 
 class AppStore {
-  private _city = 'Norilsk'
+  private _city = 'Moscow'
   private _unitsSystem = WeatherUnitsSystem.METRIC
   private _atmosphericPressureUnits = AtmosphericPressureUnits.PASCAL
 

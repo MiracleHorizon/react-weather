@@ -16,10 +16,16 @@ export default ForecastPage
 export const getStaticProps = async () => {
   const forecastResponse = await WeatherService.fetchFiveDayForecast()
 
+  if (!forecastResponse) {
+    return {
+      notFound: true
+    }
+  }
+
   return {
     props: {
-      forecastResponse,
-    },
+      forecastResponse
+    }
   }
 }
 
