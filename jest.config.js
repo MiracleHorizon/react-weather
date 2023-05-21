@@ -1,7 +1,9 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 
-module.exports = {
+const jestConfig = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  moduleDirectories: ['app', 'node_modules', 'pages'],
+  moduleDirectories: ['app', 'node_modules']
 }
+
+module.exports = jestConfig

@@ -1,27 +1,24 @@
-module.exports = {
-  root: true,
+const eslintConfig = {
+  extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended'],
+  plugins: ['react', '@typescript-eslint'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json',
+    tsconfigRootDir: __dirname
+  },
   env: {
     browser: true,
     es2021: true
   },
-  extends: [
-    'plugin:react/recommended',
-    'plugin:@next/next/recommended',
-    'plugin:react-hooks/recommended',
-    'standard-with-typescript'
-  ],
-  overrides: [],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['tsconfig.json']
-  },
-  plugins: ['react', 'react-hooks'],
   rules: {
-    'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn'
+    'react/prop-types': 'off',
+    'jsx-quotes': ['error', 'prefer-single'],
+    'react/no-unescaped-entities': 'off',
+    'react/display-name': 'off'
   }
 }
+
+module.exports = eslintConfig
