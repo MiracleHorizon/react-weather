@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 
 import Divider from '@ui/Divider'
-import ThemeToggle from '@components/ThemeToggle'
+import ThemeToggle from './ThemeToggle'
 import LocationForm from '@components/LocationForm'
 import { ServerCookieExtractor } from '@utils/server/ServerCookieExtractor'
 
