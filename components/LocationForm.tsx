@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { type FormEvent, useEffect, useRef } from 'react'
 
 import { useInput } from '@hooks/useInput'
-import { LOCATION_COOKIE_NAME } from '@constants/cookie'
+import { CITY_COOKIE_NAME } from '@constants/cookie'
 
 export default function LocationForm({ defaultValue, initialFocus }: Props) {
   const { value, handleChange } = useInput(defaultValue ?? '')
@@ -14,7 +14,7 @@ export default function LocationForm({ defaultValue, initialFocus }: Props) {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    Cookies.set(LOCATION_COOKIE_NAME, value)
+    Cookies.set(CITY_COOKIE_NAME, value)
     router.refresh()
     // TODO: revalidateTag?
   }

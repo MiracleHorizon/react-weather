@@ -1,7 +1,7 @@
 import type { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies'
 
 import {
-  LOCATION_COOKIE_NAME,
+  CITY_COOKIE_NAME,
   THEME_COOKIE_NAME,
   UNIT_SYSTEM_COOKIE_NAME
 } from '@constants/cookie'
@@ -16,9 +16,9 @@ export class ServerCookieExtractor {
     return theme ? (theme.value as Theme) : null
   }
 
-  public extractLocation(): string | null {
-    const location = this.cookieStore.get(LOCATION_COOKIE_NAME)
-    return location ? location.value : null
+  public extractCity(): string | null {
+    const city = this.cookieStore.get(CITY_COOKIE_NAME)
+    return city ? city.value : null
   }
 
   public extractUnitSystem(): UnitSystem | null {

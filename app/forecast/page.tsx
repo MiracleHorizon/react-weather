@@ -1,19 +1,12 @@
-import { cookies } from 'next/headers'
 import type { Metadata } from 'next'
-
-import { WeatherService } from '@api/WeatherService'
-import { ServerCookieExtractor } from '@utils/server/ServerCookieExtractor'
+import { useWeatherService } from '@hooks/useWeatherService'
 
 export const metadata: Metadata = {
   title: 'Weekly'
 }
 
 export default async function ForecastPage() {
-  const serverCookieExtractor = new ServerCookieExtractor(cookies())
-  const weatherService = new WeatherService({
-    location: serverCookieExtractor.extractLocation(),
-    unitSystem: serverCookieExtractor.extractUnitSystem()
-  })
+  const { weatherService } = useWeatherService()
   const forecastResponse = await weatherService.fetchWeatherForecast()
 
   return (

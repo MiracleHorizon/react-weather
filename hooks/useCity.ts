@@ -2,9 +2,9 @@ import { cookies } from 'next/headers'
 
 import { ServerCookieExtractor } from '@utils/server/ServerCookieExtractor'
 
-export function useClientLocation() {
+export function useCity() {
   const serverCookieExtractor = new ServerCookieExtractor(cookies())
-  const location = serverCookieExtractor.extractLocation()
+  const city = serverCookieExtractor.extractCity()
 
-  return { location }
+  return { city }
 }

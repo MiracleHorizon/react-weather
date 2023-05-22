@@ -1,21 +1,21 @@
 import { UnitSystem } from '@models/UnitSystem'
 import { OpenWeatherEndpoint } from '@models/api/OpenWeatherEndpoint'
-import { NotFoundLocationException } from '@entities/exceptions/NotFoundLocationException'
+import { NotFoundCityException } from '@entities/exceptions/NotFoundCityException'
 import { API_KEY, OPEN_WEATHER_API } from '@constants/api'
 import type { CurrentWeatherResponse, ForecastResponse } from '@models/weather'
 
 interface Constructor {
-  location: Readonly<string | null>
+  city: Readonly<string | null>
   unitSystem: Readonly<string | null>
 }
 
 export class WeatherService {
   private readonly baseUrl: string = OPEN_WEATHER_API
-  private readonly location: string | null
+  private readonly city: string | null
   private readonly unitSystem: string | null
 
-  constructor({ location, unitSystem }: Constructor) {
-    this.location = location
+  constructor({ city, unitSystem }: Constructor) {
+    this.city = city
     this.unitSystem = unitSystem
   }
 
@@ -30,7 +30,7 @@ export class WeatherService {
       })
 
       if (response.status === 404) {
-        return Promise.reject(new NotFoundLocationException())
+        return Promise.reject(new NotFoundCityException())
       }
 
       return response.json()
@@ -68,12 +68,12 @@ export class WeatherService {
   }
 
   private getRequestQuery(): string {
-    return `?${this.getLocationQuery()}&${this.getUnitsQuery()}&${this.getApiKeyQuery()}`
+    return `?${this.getCityQuery()}&${this.getUnitsQuery()}&${this.getApiKeyQuery()}`
   }
 
-  private getLocationQuery(): string {
-    const location = this.location ?? 'Moscow'
-    return 'q=' + location
+  private getCityQuery(): string {
+    const city = this.city ?? 'Moscow'
+    return 'q=' + city
   }
 
   private getUnitsQuery(): string {

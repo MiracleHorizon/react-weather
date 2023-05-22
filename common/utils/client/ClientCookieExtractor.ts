@@ -1,7 +1,7 @@
 import Cookie from 'js-cookie'
 
 import {
-  LOCATION_COOKIE_NAME,
+  CITY_COOKIE_NAME,
   THEME_COOKIE_NAME,
   UNIT_SYSTEM_COOKIE_NAME
 } from '@constants/cookie'
@@ -14,9 +14,9 @@ export class ClientCookieExtractor {
     return theme ? (theme as Theme) : null
   }
 
-  public static extractLocation(): string | null {
-    const location = Cookie.get(LOCATION_COOKIE_NAME)
-    return location ?? null
+  public static extractCity(): string | null {
+    const city = Cookie.get(CITY_COOKIE_NAME)
+    return city ?? null
   }
 
   public static extractUnitSystem(): UnitSystem | null {

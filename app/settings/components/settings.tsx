@@ -7,7 +7,7 @@ import { ServerCookieExtractor } from '@utils/server/ServerCookieExtractor'
 
 export default function Settings() {
   const serverCookieExtract = new ServerCookieExtractor(cookies())
-  const location = serverCookieExtract.extractLocation()
+  const city = serverCookieExtract.extractCity()
 
   return (
     <>
@@ -17,7 +17,7 @@ export default function Settings() {
         </h1>
       </article>
       <div className='flex flex-col items-center'>
-        <LocationForm defaultValue={location ?? ''} />
+        <LocationForm defaultValue={city ?? ''} />
         <Divider />
         <ThemeToggle />
       </div>
