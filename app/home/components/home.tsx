@@ -13,7 +13,7 @@ export default function Home({ currentWeatherReport }: Props) {
   return (
     <>
       <TemperatureSection
-        temperature={temperature}
+        mainTemperature={temperature.main}
         weatherIconClassName={iconClassName}
       />
       <LocationSection {...location} />

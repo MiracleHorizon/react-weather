@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 }
 
 export default async function ForecastPage() {
-  const cookieExtractor = new ServerCookieExtractor(cookies())
+  const serverCookieExtractor = new ServerCookieExtractor(cookies())
   const weatherService = new WeatherService({
-    location: cookieExtractor.extractLocation(),
-    unitSystem: cookieExtractor.extractUnitSystem()
+    location: serverCookieExtractor.extractLocation(),
+    unitSystem: serverCookieExtractor.extractUnitSystem()
   })
   const forecastResponse = await weatherService.fetchWeatherForecast()
 
