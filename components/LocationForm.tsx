@@ -7,8 +7,8 @@ import { type FormEvent, useEffect, useRef } from 'react'
 import { useInput } from '@hooks/useInput'
 import { LOCATION_COOKIE_NAME } from '@constants/cookie'
 
-export default function LocationForm({ initialFocus }: Props) {
-  const { value, handleChange } = useInput('')
+export default function LocationForm({ defaultValue, initialFocus }: Props) {
+  const { value, handleChange } = useInput(defaultValue ?? '')
   const inputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
@@ -30,7 +30,7 @@ export default function LocationForm({ initialFocus }: Props) {
         value={value}
         type='text'
         placeholder='Enter city'
-        className='h-[44px] w-full rounded-[10px] px-[12px]'
+        className='h-[44px] w-full rounded-[10px] px-[12px] text-[18px]'
         onChange={handleChange}
       />
     </form>
@@ -38,5 +38,6 @@ export default function LocationForm({ initialFocus }: Props) {
 }
 
 interface Props {
+  defaultValue?: string
   initialFocus?: boolean
 }
