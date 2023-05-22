@@ -2,12 +2,13 @@
 
 const nextConfig = {
   reactStrictMode: false,
-  swcMinify: true,
+  // swcMinify: true,
   env: {
     API_KEY: process.env.API_KEY
   },
   experimental: {
-    appDir: true
+    appDir: true,
+    serverActions: true
   }
 }
 

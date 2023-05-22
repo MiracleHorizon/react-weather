@@ -17,7 +17,8 @@ const eslintConfig = {
     'react/prop-types': 'off',
     'jsx-quotes': ['error', 'prefer-single'],
     'react/no-unescaped-entities': 'off',
-    'react/display-name': 'off'
+    'react/display-name': 'off',
+    'func-style': ['error', 'declaration', { allowArrowFunctions: false }]
   }
 }
 
