@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 
 import Settings from './components'
-import { APP_NAME } from '@constants/app'
+import { writePageTitle } from '@helpers/writePageTitle'
 
 export const metadata: Metadata = {
-  title: `${APP_NAME} | Settings`
+  title: writePageTitle('Settings')
 }
 
 export default function SettingsPage() {

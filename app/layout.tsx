@@ -2,7 +2,6 @@ import { Rubik } from 'next/font/google'
 import type { Metadata } from 'next'
 
 import Navigation from '@components/Navigation'
-import { APP_NAME } from '@constants/app'
 import { useTheme } from '@hooks/useTheme'
 import type { ChildrenProps } from '@app-types/ChildrenProps'
 import favicon from '@public/favicon.ico'
@@ -17,7 +16,6 @@ const rubik = Rubik({
 })
 
 export const metadata: Metadata = {
-  title: APP_NAME,
   icons: { icon: favicon.src }
 }
 

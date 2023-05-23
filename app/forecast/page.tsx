@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 
 import { useWeatherService } from '@hooks/useWeatherService'
-import { APP_NAME } from '@constants/app'
+import { writePageTitle } from '@helpers/writePageTitle'
 
 export const metadata: Metadata = {
-  title: `${APP_NAME} | Weekly`
+  title: writePageTitle('Weekly')
 }
 
 export default async function ForecastPage() {
