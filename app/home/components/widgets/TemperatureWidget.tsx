@@ -1,6 +1,6 @@
 import { DEGREE_SIGN } from '@constants/units'
 
-export default function TemperatureSection({
+export default function TemperatureWidget({
   weatherIconClassName,
   mainTemperature
 }: Props) {

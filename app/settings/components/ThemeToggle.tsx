@@ -1,17 +1,12 @@
-import { useMemo } from 'react'
 import { cookies } from 'next/headers'
 
 import Toggle from '@ui/Toggle'
 import { Theme } from '@app-types/Theme'
+import { useTheme } from '@hooks/useTheme'
 import { THEME_COOKIE_NAME } from '@constants/cookie'
-import { ServerCookieExtractor } from '@utils/server/ServerCookieExtractor'
 
 export default function ThemeToggle() {
-  const serverCookieExtractor = useMemo(() => {
-    return new ServerCookieExtractor(cookies())
-  }, [])
-  const themeCookie = serverCookieExtractor.extractTheme()
-  const isDarkTheme = (themeCookie && themeCookie === Theme.DARK) ?? true
+  const { withDarkMode } = useTheme()
 
   async function setDarkTheme() {
     'use server'
@@ -32,7 +27,7 @@ export default function ThemeToggle() {
   return (
     <div className='flex w-full min-w-max items-center'>
       <Toggle
-        isActive={isDarkTheme}
+        isActive={withDarkMode}
         activate={setDarkTheme}
         deactivate={setLightTheme}
       />

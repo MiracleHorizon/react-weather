@@ -1,13 +1,10 @@
-import { cookies } from 'next/headers'
-
 import Divider from '@ui/Divider'
-import ThemeToggle from './ThemeToggle'
 import LocationForm from '@components/LocationForm'
-import { ServerCookieExtractor } from '@utils/server/ServerCookieExtractor'
+import ThemeToggle from './ThemeToggle'
+import { useCity } from '@hooks/useCity'
 
 export default function Settings() {
-  const serverCookieExtract = new ServerCookieExtractor(cookies())
-  const city = serverCookieExtract.extractCity()
+  const { city } = useCity()
 
   return (
     <>
@@ -17,7 +14,7 @@ export default function Settings() {
         </h1>
       </article>
       <div className='flex flex-col items-center'>
-        <LocationForm defaultValue={city ?? ''} />
+        <LocationForm defaultValue={city} />
         <Divider />
         <ThemeToggle />
       </div>

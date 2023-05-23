@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
   const { weatherService } = useWeatherService()
-  const currentWeatherReport = await weatherService.fetchCurrentWeather()
+  const currentWeatherResponse = await weatherService.fetchCurrentWeather()
 
-  return <Home currentWeatherReport={currentWeatherReport} />
+  return <Home currentWeatherResponse={currentWeatherResponse} />
 }

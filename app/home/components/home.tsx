@@ -1,26 +1,27 @@
 import { useMemo } from 'react'
 
-import LocationSection from './LocationSection'
-import TemperatureSection from './TemperatureSection'
-import { CurrentWeatherReport } from '@entities/weather/CurrentWeatherReport'
-import type { CurrentWeatherReportModel } from '@models/weather'
+import LocationWidget from './widgets/LocationWidget'
+import TemperatureWidget from './widgets/TemperatureWidget'
+import { CurrentWeatherReport } from '@entities/weather'
+import type { CurrentWeatherResponse } from '@models/weather'
 
-export default function Home({ currentWeatherReport }: Props) {
-  const { location, temperature, iconClassName } = useMemo(() => {
-    return new CurrentWeatherReport(currentWeatherReport)
-  }, [currentWeatherReport])
+export default function Home({ currentWeatherResponse }: Props) {
+  const currentWeatherReport = useMemo(() => {
+    return new CurrentWeatherReport(currentWeatherResponse)
+  }, [currentWeatherResponse])
+  const { location, temperature, iconClassName } = currentWeatherReport
 
   return (
     <>
-      <TemperatureSection
+      <TemperatureWidget
         mainTemperature={temperature.main}
         weatherIconClassName={iconClassName}
       />
-      <LocationSection {...location} />
+      <LocationWidget {...location} />
     </>
   )
 }
 
 interface Props {
-  currentWeatherReport: CurrentWeatherReportModel
+  currentWeatherResponse: CurrentWeatherResponse
 }

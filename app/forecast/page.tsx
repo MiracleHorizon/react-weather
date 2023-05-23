@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+
 import { useWeatherService } from '@hooks/useWeatherService'
 import { APP_NAME } from '@constants/app'
 
