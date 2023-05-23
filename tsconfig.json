@@ -40,9 +40,7 @@
       "@api/*": ["api/*"],
       "@layouts/*": ["layouts/*"],
       "@components/*": ["components/*"],
-      "@hoc/*": ["hoc/*"],
       "@ui/*": ["components/ui/*"],
-      "@stores/*": ["stores/*"],
       "@hooks/*": ["hooks/*"],
       "@router/*": ["common/router/*"],
       "@utils/*": ["common/utils/*"],
@@ -51,7 +49,6 @@
       "@exceptions/*": ["common/entities/exceptions/*"],
       "@constants/*": ["common/constants/*"],
       "@models/*": ["common/models/*"],
-      "@libs/*": ["common/libs/*"],
       "@app-types/*": ["common/types/*"]
     }
   },
