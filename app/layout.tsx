@@ -7,6 +7,7 @@ import { APP_NAME } from '@constants/app'
 import { useTheme } from '@hooks/useTheme'
 import { useCity } from '@hooks/useCity'
 import type { ChildrenProps } from '@app-types/ChildrenProps'
+import favicon from '@public/favicon.ico'
 import '@public/styles/globals.css'
 
 const rubik = Rubik({
@@ -18,7 +19,8 @@ const rubik = Rubik({
 })
 
 export const metadata: Metadata = {
-  title: APP_NAME
+  title: APP_NAME,
+  icons: { icon: favicon.src }
 }
 
 export default function RootLayout({ children }: ChildrenProps) {

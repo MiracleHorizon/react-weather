@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 
 import Home from './home'
 import { useWeatherService } from '@hooks/useWeatherService'
+import { APP_NAME } from '@constants/app'
 
 export const metadata: Metadata = {
-  title: 'Home'
+  title: `${APP_NAME} | Home`
 }
 
 export default async function HomePage() {

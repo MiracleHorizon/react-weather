@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { useWeatherService } from '@hooks/useWeatherService'
+import { APP_NAME } from '@constants/app'
 
 export const metadata: Metadata = {
-  title: 'Weekly'
+  title: `${APP_NAME} | Weekly`
 }
 
 export default async function ForecastPage() {
