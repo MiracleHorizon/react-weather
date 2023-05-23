@@ -1,13 +1,21 @@
-import { cookies } from 'next/headers'
-
+import { useCity } from '@hooks/useCity'
+import { useUnitSystem } from '@hooks/useUnitSystem'
 import { WeatherService } from '@api/WeatherService'
-import { ServerCookieExtractor } from '@utils/server/ServerCookieExtractor'
+import { WrongCredentialsException } from '@exceptions/WrongCredentialsException'
+import { API_KEY } from '@constants/api'
 
 export function useWeatherService() {
-  const serverCookieExtractor = new ServerCookieExtractor(cookies())
+  if (!API_KEY) {
+    throw new WrongCredentialsException()
+  }
+
+  const { city } = useCity()
+  const { unitSystem } = useUnitSystem()
+
   const weatherService = new WeatherService({
-    city: serverCookieExtractor.extractCity(),
-    unitSystem: serverCookieExtractor.extractUnitSystem()
+    apiKey: API_KEY,
+    unitSystem,
+    city
   })
 
   return { weatherService }

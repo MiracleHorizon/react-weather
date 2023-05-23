@@ -1,10 +1,10 @@
-const EXCEPTION_MESSAGE: string = 'City not found'
+const EXCEPTION_MESSAGE: string = 'Wrong credentials'
 
-export class NotFoundCityException extends Error {
+export class WrongCredentialsException extends Error {
   constructor() {
     super(EXCEPTION_MESSAGE)
     this.message = EXCEPTION_MESSAGE
-    this.name = 'NotFoundCityException'
+    this.name = 'WrongCredentialsException'
   }
 
   public static getMessage(): string {

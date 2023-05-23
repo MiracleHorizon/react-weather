@@ -2,10 +2,8 @@ import { Rubik } from 'next/font/google'
 import type { Metadata } from 'next'
 
 import Navigation from '@components/Navigation'
-import Greeting from '@components/Greeting'
 import { APP_NAME } from '@constants/app'
 import { useTheme } from '@hooks/useTheme'
-import { useCity } from '@hooks/useCity'
 import type { ChildrenProps } from '@app-types/ChildrenProps'
 import favicon from '@public/favicon.ico'
 import '@public/styles/globals.css'
@@ -25,7 +23,6 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: ChildrenProps) {
   const { withDarkMode } = useTheme()
-  const { city } = useCity()
 
   return (
     <html lang='en' className={withDarkMode ? 'dark' : 'light'}>
@@ -35,7 +32,7 @@ export default function RootLayout({ children }: ChildrenProps) {
             <Navigation />
           </aside>
           <main className='flex max-h-[400px] w-[600px] flex-col items-center justify-start rounded-[24px] bg-gray-300 py-[24px] dark:bg-gray-600'>
-            {city ? children : <Greeting title='Hello! Please, enter city' />}
+            {children}
           </main>
         </div>
       </body>

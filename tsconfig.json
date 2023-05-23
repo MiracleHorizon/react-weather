@@ -48,6 +48,7 @@
       "@utils/*": ["common/utils/*"],
       "@helpers/*": ["common/helpers/*"],
       "@entities/*": ["common/entities/*"],
+      "@exceptions/*": ["common/entities/exceptions/*"],
       "@constants/*": ["common/constants/*"],
       "@models/*": ["common/models/*"],
       "@libs/*": ["common/libs/*"],
