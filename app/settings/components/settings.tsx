@@ -1,10 +1,10 @@
 import Divider from '@ui/Divider'
 import LocationForm from '@components/LocationForm'
 import ThemeToggle from './ThemeToggle'
-import { useCity } from '@hooks/useCity'
+import { useSelectCity } from '@hooks/useSelectCity'
 
 export default function Settings() {
-  const { city } = useCity()
+  const { city } = useSelectCity()
 
   return (
     <>

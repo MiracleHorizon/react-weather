@@ -13,6 +13,15 @@ const tailwindConfig = {
       }
     },
     screens: {
+      '[650px-max]': {
+        max: '650px'
+      },
+      '[440px-max]': {
+        max: '440px'
+      },
+      '[440px-min]': {
+        min: '440px'
+      },
       'sm-max': {
         max: '576px'
       },

@@ -2,11 +2,11 @@ import { cookies } from 'next/headers'
 
 import Toggle from '@ui/Toggle'
 import { Theme } from '@app-types/Theme'
-import { useTheme } from '@hooks/useTheme'
+import { useSelectTheme } from '@hooks/useSelectTheme'
 import { THEME_COOKIE_NAME } from '@constants/cookie'
 
 export default function ThemeToggle() {
-  const { withDarkMode } = useTheme()
+  const { withDarkMode } = useSelectTheme()
 
   async function setDarkTheme() {
     'use server'

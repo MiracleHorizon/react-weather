@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  reactStrictMode: false,
-  // swcMinify: true,
+  reactStrictMode: true,
+  swcMinify: true,
   env: {
     API_KEY: process.env.API_KEY
+  },
+  eslint: {
+    ignoreDuringBuilds: false
   },
   experimental: {
     appDir: true,
