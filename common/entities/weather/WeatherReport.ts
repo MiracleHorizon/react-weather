@@ -3,17 +3,20 @@ import { Temperature } from '@entities/Temperature'
 import { DateHandler } from '@utils/DateHandler'
 import { WeatherIconsHandler } from '@utils/WeatherIconsHandler'
 import { getTemperatureFromWeatherReport } from '@helpers/getTemperatureFromWeatherReport'
+import { OPEN_WEATHER_TIMESTAMP_MULTIPLIER } from '@constants/api'
 import type { Season } from '@models/Season'
 
 export abstract class WeatherReport {
-  private readonly baseReport: BaseWeatherReport
   private readonly dateHandler: DateHandler
   private readonly weatherIconsHandler: WeatherIconsHandler
+  private readonly baseReport: BaseWeatherReport
   public readonly temperature: Temperature
 
   protected constructor(baseWeatherReport: BaseWeatherReport) {
     this.baseReport = baseWeatherReport
-    this.dateHandler = new DateHandler(baseWeatherReport.dt * 1000)
+    this.dateHandler = new DateHandler(
+      baseWeatherReport.dt * OPEN_WEATHER_TIMESTAMP_MULTIPLIER
+    )
     this.weatherIconsHandler = new WeatherIconsHandler(
       !this.isNightTimeReport,
       this.description
