@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 
 import Divider from '@ui/Divider'
+import DateWidget from './widgets/DateWidget'
 import LocationWidget from './widgets/LocationWidget'
 import TemperatureWidget from './widgets/TemperatureWidget'
 import SunStateWidget from './widgets/SunStateWidget'
@@ -11,8 +12,13 @@ export default function Home({ currentWeatherResponse }: Props) {
   const currentWeatherReport = useMemo(() => {
     return new CurrentWeatherReport(currentWeatherResponse)
   }, [currentWeatherResponse])
-  const { sunState, location, temperature, iconClassName } =
-    currentWeatherReport
+  const {
+    sunState,
+    location,
+    temperature,
+    iconClassName,
+    report: { dt: dateTimestamp }
+  } = currentWeatherReport
 
   return (
     <main className='flex w-[550px] items-start justify-start rounded-[12px] bg-white px-[40px] pb-[24px] pt-[32px] shadow-md [440px-max]:px-[24px] [650px-max]:flex-col [650px-max]:items-center'>
@@ -22,6 +28,7 @@ export default function Home({ currentWeatherResponse }: Props) {
           weatherIconClassName={iconClassName}
         />
         <LocationWidget {...location} />
+        <DateWidget dateTimestamp={dateTimestamp} />
       </div>
       <div className='flex w-full flex-col items-center'>
         <Divider className='my-[8px] [440px-max]:w-[calc(100%-24px)]' />

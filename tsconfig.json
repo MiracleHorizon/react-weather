@@ -44,6 +44,7 @@
       "@hooks/*": ["hooks/*"],
       "@router/*": ["common/router/*"],
       "@utils/*": ["common/utils/*"],
+      "@libs/*": ["common/libs/*"],
       "@helpers/*": ["common/helpers/*"],
       "@entities/*": ["common/entities/*"],
       "@exceptions/*": ["common/entities/exceptions/*"],

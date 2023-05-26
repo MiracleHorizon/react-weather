@@ -4,7 +4,7 @@ import type { ReportLocation } from '@models/ReportLocation'
 import type { CurrentWeatherReportModel } from '@models/weather'
 
 export class CurrentWeatherReport extends WeatherReport {
-  private readonly report: CurrentWeatherReportModel
+  public readonly report: CurrentWeatherReportModel
 
   constructor(report: CurrentWeatherReportModel) {
     super(report)
