@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 
+import Divider from '@ui/Divider'
 import LocationWidget from './widgets/LocationWidget'
 import TemperatureWidget from './widgets/TemperatureWidget'
 import SunStateWidget from './widgets/SunStateWidget'
@@ -14,18 +15,19 @@ export default function Home({ currentWeatherResponse }: Props) {
     currentWeatherReport
 
   return (
-    <div className='flex h-full w-full justify-between px-[40px] [440px-max]:px-[16px] [650px-max]:flex-col [650px-max]:items-center'>
-      <div>
+    <main className='flex w-[550px] items-start justify-start rounded-[12px] bg-white px-[40px] pb-[24px] pt-[32px] shadow-md [440px-max]:px-[24px] [650px-max]:flex-col [650px-max]:items-center'>
+      <div className='mr-[12px] w-[130px] min-w-[130px] [650px-max]:mb-[12px] [650px-max]:mr-0'>
         <TemperatureWidget
           mainTemperature={temperature.main}
           weatherIconClassName={iconClassName}
         />
         <LocationWidget {...location} />
       </div>
-      <div className='flex h-full flex-col'>
+      <div className='flex w-full flex-col items-center'>
+        <Divider className='my-[8px] [440px-max]:w-[calc(100%-24px)]' />
         <SunStateWidget {...sunState} />
       </div>
-    </div>
+    </main>
   )
 }
 

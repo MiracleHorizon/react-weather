@@ -16,11 +16,17 @@ const tailwindConfig = {
       '[650px-max]': {
         max: '650px'
       },
+      '[550px-max]': {
+        max: '550px'
+      },
       '[440px-max]': {
         max: '440px'
       },
       '[440px-min]': {
         min: '440px'
+      },
+      '[400px-max]': {
+        max: '400px'
       },
       'sm-max': {
         max: '576px'
