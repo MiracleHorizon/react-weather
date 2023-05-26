@@ -37,6 +37,7 @@
     ],
     "paths": {
       "@public/*": ["public/*"],
+      "@lib/*": ["lib/*"],
       "@api/*": ["api/*"],
       "@layouts/*": ["layouts/*"],
       "@components/*": ["components/*"],

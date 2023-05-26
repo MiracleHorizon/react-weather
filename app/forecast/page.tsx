@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
 
-import { useWeatherService } from '@hooks/useWeatherService'
 import { writePageTitle } from '@helpers/writePageTitle'
+import { createWeatherService } from '@lib/createWeatherService'
 
 export const metadata: Metadata = {
   title: writePageTitle('Weekly')
 }
 
 export default async function ForecastPage() {
-  const { weatherService } = useWeatherService()
+  const { weatherService } = createWeatherService()
   const forecastResponse = await weatherService.fetchWeatherForecast()
 
   return (

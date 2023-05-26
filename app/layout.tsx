@@ -2,7 +2,7 @@ import { Rubik } from 'next/font/google'
 import type { Metadata } from 'next'
 import type { PropsWithChildren } from 'react'
 
-import { useSelectTheme } from '@hooks/useSelectTheme'
+import { getThemeCookie } from '@lib/cookies/getThemeCookie'
 import '@public/styles/globals.css'
 
 const rubik = Rubik({
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: PropsWithChildren) {
-  const { withDarkMode } = useSelectTheme()
+  const { withDarkMode } = getThemeCookie()
 
   return (
     <html lang='en' className={withDarkMode ? 'dark' : 'light'}>

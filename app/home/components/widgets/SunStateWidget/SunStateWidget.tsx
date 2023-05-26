@@ -3,11 +3,11 @@ import { useMemo } from 'react'
 import SunsetSvg from '@ui/svg/SunsetSvg'
 import SunriseSvg from '@ui/svg/SunriseSvg'
 import SunStateWidgetItem from './SunStateWidgetItem'
-import { useSelectTheme } from '@hooks/useSelectTheme'
+import { getThemeCookie } from '@lib/cookies/getThemeCookie'
 import type { SunState } from '@models/SunState'
 
 export default function SunStateWidget({ sunrise, sunset }: SunState) {
-  const { withDarkMode } = useSelectTheme()
+  const { withDarkMode } = getThemeCookie()
 
   const sunStateItems = useMemo(() => {
     const iconProps = {
