@@ -1,10 +1,10 @@
-import Image from 'next/image'
+import type { ReactNode } from 'react'
 
 import { OPEN_WEATHER_TIMESTAMP_MULTIPLIER } from '@constants/api'
 
 export default function SunStateWidgetItem({
   title,
-  imagePath,
+  icon,
   dateTimestamp
 }: Props) {
   function formatDate() {
@@ -19,22 +19,12 @@ export default function SunStateWidgetItem({
     return Intl.DateTimeFormat(locale, dateOptions).format(date)
   }
 
-  const image = (
-    <Image
-      src={imagePath}
-      alt={title}
-      width={28}
-      height={28}
-      className='mb-[-1px] ml-[6px] opacity-70'
-    />
-  )
-
   const defaultJsx = (
     <article className='flex items-end [440px-max]:hidden'>
       <span className='text-[13px]'>
         {title}: {formatDate()}
       </span>
-      {image}
+      {icon}
     </article>
   )
 
@@ -43,7 +33,7 @@ export default function SunStateWidgetItem({
       <span className='hidden text-[12px] [440px-max]:inline'>{title}</span>
       <article className='hidden items-end [440px-max]:flex'>
         <span className='text-[11px]'>{formatDate()}</span>
-        {image}
+        {icon}
       </article>
     </>
   )
@@ -58,6 +48,6 @@ export default function SunStateWidgetItem({
 
 interface Props {
   title: string
-  imagePath: string
+  icon: ReactNode
   dateTimestamp: number
 }

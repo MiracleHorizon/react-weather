@@ -5,7 +5,7 @@ export default function LocationWidget({ city, countryCode }: ReportLocation) {
   return (
     <section className='mt-[-8px] text-center'>
       <article>
-        <span className='text-[18px] text-gray-400'>
+        <span className='text-[18px] text-gray-400 dark:text-gray-300'>
           {city},{' '}
           {IntlDisplayNamesHandler.getRegionNameByRegionCode(countryCode)}
         </span>

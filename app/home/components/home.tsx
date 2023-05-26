@@ -21,7 +21,7 @@ export default function Home({ currentWeatherResponse }: Props) {
   } = currentWeatherReport
 
   return (
-    <main className='flex w-[550px] items-start justify-start rounded-[12px] bg-white px-[40px] pb-[24px] pt-[32px] shadow-md [440px-max]:px-[24px] [650px-max]:flex-col [650px-max]:items-center'>
+    <main className='flex w-[550px] items-start justify-start rounded-[12px] bg-white px-[40px] pb-[24px] pt-[32px] shadow-md dark:bg-gray-500 [440px-max]:px-[24px] [650px-max]:flex-col [650px-max]:items-center'>
       <div className='mr-[12px] w-[130px] min-w-[130px] [650px-max]:mb-[12px] [650px-max]:mr-0'>
         <TemperatureWidget
           mainTemperature={temperature.main}
