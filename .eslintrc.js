@@ -1,5 +1,11 @@
 const eslintConfig = {
-  extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended'],
+  extends: [
+    'next',
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'prettier'
+  ],
   plugins: ['react', '@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
