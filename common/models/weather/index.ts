@@ -4,7 +4,7 @@ export type { TemperatureModel } from './Temperature'
 export type { DailyForecastModel } from './api/DailyForecast'
 
 // Api/general
-export type { City } from './api/general/City'
+export type { ForecastCity } from './api/general/ForecastCity'
 export type { Wind } from './api/general/Wind'
 export type { Clouds } from './api/general/Clouds'
 export type { Coords } from './api/general/Coords'

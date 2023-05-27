@@ -31,4 +31,15 @@ export class DateHandler {
       weekday: 'long'
     }).format(this.date)
   }
+
+  public getDateWithLocationTimezone(locationTimezoneOffset: number): Date {
+    const date = new Date(this.date.toUTCString())
+    const hours = date.getHours()
+    // NOTE: Date.getTimezoneOffset возвращает timezone offset в формате минут
+    const clientTimezoneOffset = this.date.getTimezoneOffset() / 60
+
+    date.setHours(hours + locationTimezoneOffset + clientTimezoneOffset)
+
+    return date
+  }
 }
