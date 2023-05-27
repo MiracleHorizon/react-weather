@@ -85,6 +85,6 @@ export class WeatherIconsHandler {
   }
 
   private get errorIcon(): string {
-    return 'we-alien'
+    return 'wi-alien'
   }
 }
