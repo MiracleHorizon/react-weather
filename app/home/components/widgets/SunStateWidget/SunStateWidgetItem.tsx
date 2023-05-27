@@ -30,7 +30,7 @@ export default function SunStateWidgetItem({
 
   const smallScreenJsx = (
     <>
-      <span className='hidden text-[12px] [440px-max]:inline'>{title}</span>
+      <span className='hidden text-[13px] [440px-max]:inline'>{title}</span>
       <article className='hidden items-end [440px-max]:flex'>
         <span className='text-[11px]'>{formatDate()}</span>
         {icon}

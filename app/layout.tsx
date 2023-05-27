@@ -27,7 +27,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang='en' className={withDarkMode ? 'dark' : 'light'}>
       <body className={`${rubik.className} relative`}>
-        <div className='relative flex h-screen w-screen items-center justify-center bg-gradient-to-r from-amber-300 to-orange-500 px-[24px] dark:bg-gradient-to-br dark:from-slate-600 dark:to-gray-800 [440px-max]:px-[16px] [650px-max]:items-start [650px-max]:pt-[24px]'>
+        <div className='relative flex min-h-screen w-screen items-center justify-center bg-gradient-to-r from-amber-300 to-orange-500 px-[24px] dark:bg-gradient-to-br dark:from-slate-600 dark:to-gray-800 [440px-max]:px-[16px] [650px-max]:items-start [650px-max]:py-[24px]'>
           {children}
         </div>
       </body>

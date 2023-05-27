@@ -11,7 +11,8 @@ export default function SunStateWidget({ sunrise, sunset }: SunState) {
 
   const sunStateItems = useMemo(() => {
     const iconProps = {
-      rootClassName: 'ml-[6px]',
+      rootClassName:
+        'ml-[6px] [440px-max]:transform [440px-max]:translate-y-[1px]',
       pathClassName: withDarkMode ? 'fill-gray-300' : 'fill-gray-700'
     }
 

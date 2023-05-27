@@ -1,4 +1,4 @@
-@import url('weather-icons/css/weather-icons.css');
+@import url('weathericons/css/weather-icons.min.css');
 
 @tailwind base;
 @tailwind components;

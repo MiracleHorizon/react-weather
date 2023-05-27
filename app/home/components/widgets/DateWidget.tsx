@@ -16,7 +16,7 @@ export default function DateWidget({ dateTimestamp }: Props) {
   return (
     <section>
       <article className='text-center'>
-        <span className='text-[14px] text-gray-400 dark:text-gray-300'>
+        <span className='text-[14px] text-gray-500 dark:text-gray-300'>
           {getFormattedDate().catch(() => new Date().toLocaleDateString())}
         </span>
       </article>
