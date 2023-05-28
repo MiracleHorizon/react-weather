@@ -1,40 +1,24 @@
-import { cookies } from 'next/headers'
+'use client'
 
 import Toggle from '@ui/Toggle'
-import { Theme } from '@app-types/Theme'
-import { THEME_COOKIE_NAME } from '@constants/cookie'
-import { getThemeCookie } from '@lib/cookies/getThemeCookie'
+import { setDarkTheme } from '@lib/cookies/setDarkTheme'
+import { setLightTheme } from '@lib/cookies/setLightTheme'
 
-export default function ThemeToggle() {
-  const cookieStore = cookies()
-  const { withDarkMode } = getThemeCookie()
-
-  async function setDarkTheme() {
-    'use server'
-    await cookieStore.set({
-      name: THEME_COOKIE_NAME,
-      value: Theme.DARK
-    })
-  }
-
-  async function setLightTheme() {
-    'use server'
-    await cookieStore.set({
-      name: THEME_COOKIE_NAME,
-      value: Theme.LIGHT
-    })
+export default function ThemeToggle({ withDarkMode }: Props) {
+  async function onChange(checked: boolean) {
+    await (checked ? setDarkTheme : setLightTheme)()
   }
 
   return (
-    <div className='flex w-full min-w-max items-center'>
-      <Toggle
-        isActive={withDarkMode}
-        activate={setDarkTheme}
-        deactivate={setLightTheme}
-      />
-      <span className='ml-[12px] text-[20px] font-light text-gray-700 dark:text-gray-100'>
-        Toggle dark theme
+    <div className='mb-[8px] flex h-[45px] w-full min-w-max items-center justify-between'>
+      <span className='text-[18px] text-gray-700 dark:text-gray-100'>
+        Dark theme
       </span>
+      <Toggle checked={withDarkMode} onChange={onChange} />
     </div>
   )
+}
+
+interface Props {
+  withDarkMode: boolean
 }

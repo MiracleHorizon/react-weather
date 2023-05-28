@@ -1,23 +1,19 @@
-import Divider from '@ui/Divider'
-import LocationForm from '@components/LocationForm'
 import ThemeToggle from './ThemeToggle'
-import { getCityCookie } from '@lib/cookies/getCityCookie'
+import { getThemeCookie } from '@lib/cookies/getThemeCookie'
 
 export default function Settings() {
-  const { cityCookie: city } = getCityCookie()
+  const { withDarkMode } = getThemeCookie()
 
   return (
-    <>
-      <article className='mb-[12px]'>
+    <main className='flex w-[600px] flex-col items-start justify-start rounded-3xl bg-white px-[40px] py-[24px] shadow-md dark:bg-gray-600'>
+      <article className='mb-[12px] w-full'>
         <h1 className='text-center text-[36px] text-gray-700 dark:text-gray-100'>
           Settings
         </h1>
       </article>
-      <div className='flex flex-col items-center'>
-        <LocationForm defaultValue={city} />
-        <Divider />
-        <ThemeToggle />
+      <div className='flex w-full flex-col items-center'>
+        <ThemeToggle withDarkMode={withDarkMode} />
       </div>
-    </>
+    </main>
   )
 }
