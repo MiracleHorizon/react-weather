@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import { type FormEvent, useEffect, useRef } from 'react'
+import { twJoin } from 'tailwind-merge'
 
 import { useInput } from '@hooks/useInput'
 import styles from './EnterCityForm.module.css'
@@ -45,7 +46,21 @@ export default function EnterCityForm({
         maxLength={40}
         type='text'
         placeholder='Enter city name'
-        className={`h-full flex-auto border-b-[1.5px] border-l-[1.5px] border-t-[1.5px] bg-gray-100 pl-[50px] pr-[5px] text-center text-[16px] focus:border-solid focus:border-gray-600 ${styles.input}`}
+        className={twJoin([
+          'h-full',
+          'flex-auto',
+          'border-b-[1.5px]',
+          'border-l-[1.5px]',
+          'border-t-[1.5px]',
+          'bg-gray-100',
+          'pl-[50px]',
+          'pr-[5px]',
+          'text-center',
+          'text-[16px]',
+          'focus:border-solid',
+          'focus:border-gray-600',
+          styles.input
+        ])}
         onChange={handleChange}
       />
       <EnterCitySubmit />

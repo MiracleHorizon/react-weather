@@ -1,3 +1,5 @@
+import { twJoin } from 'tailwind-merge'
+
 export default function WeatherDetailsItem({
   title,
   value,
@@ -7,7 +9,12 @@ export default function WeatherDetailsItem({
   return (
     <li
       key={title}
-      className='w-full text-gray-700 dark:text-gray-100 [&:not(&:last-of-type)]:mb-[2px]'
+      className={twJoin([
+        'w-full',
+        'text-gray-700',
+        'dark:text-gray-100',
+        '[&:not(&:last-of-type)]:mb-[2px]'
+      ])}
     >
       <article className='flex w-full justify-between text-[16px]'>
         <span className='[440px-max]:text-[14px]'>{title}</span>

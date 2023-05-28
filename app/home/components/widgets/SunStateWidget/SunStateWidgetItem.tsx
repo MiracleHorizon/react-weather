@@ -1,3 +1,4 @@
+import { twJoin } from 'tailwind-merge'
 import type { ReactNode } from 'react'
 
 import { OPEN_WEATHER_TIMESTAMP_MULTIPLIER } from '@constants/api'
@@ -32,14 +33,23 @@ export default function SunStateWidgetItem({
     <>
       <span className='hidden text-[13px] [440px-max]:inline'>{title}</span>
       <article className='hidden items-end [440px-max]:flex'>
-        <span className='text-[11px]'>{formatDate()}</span>
+        <span className='text-[12px]'>{formatDate()}</span>
         {icon}
       </article>
     </>
   )
 
   return (
-    <div className='text-gray-700 dark:text-gray-300 [440px-max]:flex [440px-max]:w-full [440px-max]:items-end [440px-max]:justify-between'>
+    <div
+      className={twJoin([
+        'text-gray-700',
+        'dark:text-gray-300',
+        '[440px-max]:flex',
+        '[440px-max]:w-full',
+        '[440px-max]:items-end',
+        '[440px-max]:justify-between'
+      ])}
+    >
       {defaultJsx}
       {smallScreenJsx}
     </div>
