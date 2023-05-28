@@ -1,0 +1,16 @@
+.icon {
+  @apply h-[20px] w-[20px]
+}
+
+@media screen and (max-width: 550px) {
+  .icon {
+    @apply h-[30px] w-[30px]
+  }
+}
+
+
+@media screen and (max-width: 440px) {
+  .icon {
+    @apply h-[26px] w-[26px]
+  }
+}
