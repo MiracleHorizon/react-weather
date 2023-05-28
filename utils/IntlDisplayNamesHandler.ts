@@ -1,4 +1,4 @@
-import { StringTransformer } from '@utils/StringTransformer'
+import { StringTransformer } from './StringTransformer'
 
 export class IntlDisplayNamesHandler {
   public static getRegionNameByRegionCode(regionCode: string): string {
