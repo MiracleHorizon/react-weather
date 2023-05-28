@@ -36,7 +36,7 @@ export class WeatherIconsHandler {
       case WeatherDescription.BROKEN_CLOUDS:
         return this.cloudsIcon
       case WeatherDescription.OVERCAST_CLOUDS:
-        return this.cloudsIcon
+        return this.overcastCloudsIcon
       default:
         return this.errorIcon
     }
@@ -52,6 +52,10 @@ export class WeatherIconsHandler {
 
   private get cloudsIcon(): string {
     return 'wi-cloud'
+  }
+
+  private get overcastCloudsIcon(): string {
+    return `wi-${this.isDay ? 'wi-day-cloudy' : 'night-alt-cloudy'}`
   }
 
   private get rainIcon(): string {
