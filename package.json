@@ -11,6 +11,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.14",
+    "@heroicons/react": "^2.0.18",
     "date-fns": "^2.30.0",
     "js-cookie": "^3.0.5",
     "next": "^13.4.3",
