@@ -1,4 +1,4 @@
-import { twJoin } from 'tailwind-merge'
+import { twJoin, twMerge } from 'tailwind-merge'
 
 export default function WeatherDetailsItem({
   title,
@@ -11,6 +11,7 @@ export default function WeatherDetailsItem({
       key={title}
       className={twJoin([
         'w-full',
+        'h-[24px]',
         'text-gray-700',
         'dark:text-gray-100',
         '[&:not(&:last-of-type)]:mb-[2px]'
@@ -21,7 +22,7 @@ export default function WeatherDetailsItem({
         <span className='[440px-max]:text-[13px]'>
           {value}
           {postfix}
-          <i className={`wi ml-[8px] text-[20px] wi-${iconClassName}`} />
+          <i className={twMerge('wi ml-[8px] text-[20px]', iconClassName)} />
         </span>
       </article>
     </li>

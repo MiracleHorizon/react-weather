@@ -6,9 +6,10 @@ import { UnitSystemPostfixesHandler } from '@utils/UnitSystemPostfixesHandler'
 import { AtmosphericPressureConverter } from '@utils/AtmosphericPressureConverter'
 import { convertWindDirectionDegreesToCardinal } from '@helpers/convertWindDirectionDegreesToCardinal'
 import type { Temperature } from '@entities/Temperature'
-import type { Wind } from '@models/weather'
+import type { MainWeatherInfo, Wind } from '@models/weather'
 
 export default function WeatherDetailsWidget({
+  clouds,
   pressure,
   humidity,
   wind
@@ -22,16 +23,23 @@ export default function WeatherDetailsWidget({
   const items = useMemo(() => {
     return [
       {
+        title: 'Cloudy',
+        value: clouds,
+        postfix: '%',
+        iconClassName:
+          'wi-cloud wi-fw w-[15px] translate-x-[-1px] transform text-[17px]'
+      },
+      {
         title: 'Humidity',
         value: humidity,
         postfix: '%',
-        iconClassName: 'humidity'
+        iconClassName: 'wi-humidity'
       },
       {
         title: 'Pressure',
         value: AtmosphericPressureConverter.convertHectopascalsToMmHg(pressure),
         postfix: ' mmHg',
-        iconClassName: 'barometer transform translate-y-[1px]'
+        iconClassName: 'wi-barometer transform translate-y-[1px]'
       },
       {
         title: 'Wind',
@@ -39,10 +47,10 @@ export default function WeatherDetailsWidget({
         postfix: ` ${windSpeedPostfix}, ${convertWindDirectionDegreesToCardinal(
           wind.deg
         )}`,
-        iconClassName: 'dust transform translate-y-[2px]'
+        iconClassName: 'wi-dust transform translate-y-[2px]'
       }
     ]
-  }, [pressure, humidity, wind.speed, wind.deg, windSpeedPostfix])
+  }, [clouds, humidity, pressure, wind.speed, wind.deg, windSpeedPostfix])
 
   return (
     <section className='mt-[8px] w-full'>
@@ -55,9 +63,8 @@ export default function WeatherDetailsWidget({
   )
 }
 
-interface Props {
+interface Props extends Pick<MainWeatherInfo, 'humidity' | 'pressure'> {
   wind: Wind
-  humidity: number
-  pressure: number
   temperature: Temperature
+  clouds: number
 }

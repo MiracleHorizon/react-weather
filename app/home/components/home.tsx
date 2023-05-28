@@ -20,9 +20,10 @@ export default function Home({ currentWeatherResponse }: Props) {
     temperature,
     iconClassName,
     report: {
-      dt: dateTimestamp,
       wind,
-      main: { humidity, pressure }
+      clouds,
+      main: { humidity, pressure },
+      dt: dateTimestamp
     }
   } = currentWeatherReport
 
@@ -62,6 +63,7 @@ export default function Home({ currentWeatherResponse }: Props) {
       <div className='flex w-full flex-col items-center'>
         <WeatherDetailsWidget
           wind={wind}
+          clouds={clouds.all}
           humidity={humidity}
           pressure={pressure}
           temperature={temperature}
