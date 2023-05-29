@@ -55,7 +55,7 @@ export default function Home({ currentWeatherResponse }: Props) {
         ])}
       >
         <TemperatureWidget
-          temperature={temperature.main}
+          temperature={temperature.temp}
           weatherIconClassName={iconClassName}
         />
         <LocationWidget {...location} />
@@ -70,7 +70,6 @@ export default function Home({ currentWeatherResponse }: Props) {
           clouds={clouds.all}
           humidity={humidity}
           pressure={pressure}
-          temperature={temperature}
         />
         <Divider className='my-[10px] [440px-max]:w-[calc(100%-24px)]' />
         <SunStateWidget {...sunState} />

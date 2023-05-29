@@ -1,23 +1,31 @@
-import { type BaseWeatherReport, WeatherDescription } from '@models/weather'
-import { Temperature } from '@entities/Temperature'
+import {
+  type BaseWeatherReport,
+  type TemperatureModel,
+  WeatherDescription
+} from '@models/weather'
 import { DateHandler } from '@utils/DateHandler'
-import { getTemperatureFromWeatherReport } from '@helpers/getTemperatureFromWeatherReport'
 import { OPEN_WEATHER_TIMESTAMP_MULTIPLIER } from '@constants/api'
 import type { Season } from '@models/Season'
 
 export abstract class WeatherReport {
   private readonly baseReport: BaseWeatherReport
   protected readonly dateHandler: DateHandler
-  public readonly temperature: Temperature
 
   protected constructor(baseWeatherReport: BaseWeatherReport) {
     this.baseReport = baseWeatherReport
     this.dateHandler = new DateHandler(
       baseWeatherReport.dt * OPEN_WEATHER_TIMESTAMP_MULTIPLIER
     )
-    this.temperature = new Temperature(
-      getTemperatureFromWeatherReport(baseWeatherReport)
-    )
+  }
+
+  public get temperature(): TemperatureModel {
+    const { temp, temp_min, temp_max, feels_like } = this.baseReport.main
+    return {
+      temp,
+      temp_min,
+      temp_max,
+      feels_like
+    }
   }
 
   public get season(): Season {

@@ -5,7 +5,6 @@ import { getUnitSystemCookie } from '@lib/cookies/getUnitSystemCookie'
 import { UnitSystemPostfixesHandler } from '@utils/weather/UnitSystemPostfixesHandler'
 import { AtmosphericPressureConverter } from '@utils/weather/AtmosphericPressureConverter'
 import { convertWindDirectionDegreesToCardinal } from '@helpers/convertWindDirectionDegreesToCardinal'
-import type { Temperature } from '@entities/Temperature'
 import type { MainWeatherInfo, Wind } from '@models/weather'
 
 export default function WeatherDetailsWidget({
@@ -65,6 +64,5 @@ export default function WeatherDetailsWidget({
 
 interface Props extends Pick<MainWeatherInfo, 'humidity' | 'pressure'> {
   wind: Wind
-  temperature: Temperature
   clouds: number
 }
