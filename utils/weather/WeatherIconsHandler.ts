@@ -55,7 +55,7 @@ export class WeatherIconsHandler {
   }
 
   private get overcastCloudsIcon(): string {
-    return `wi-${this.isDay ? 'wi-day-cloudy' : 'night-alt-cloudy'}`
+    return `wi-${this.isDay ? 'day-cloudy' : 'night-alt-cloudy'}`
   }
 
   private get rainIcon(): string {
