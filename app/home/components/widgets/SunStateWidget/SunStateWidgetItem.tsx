@@ -20,7 +20,7 @@ export default function SunStateWidgetItem({
 
   const defaultJsx = (
     <article className='flex items-end [440px-max]:hidden'>
-      <span className='text-[13px]'>
+      <span className='text-[14px]'>
         {title}: {formatDate()}
       </span>
       {icon}

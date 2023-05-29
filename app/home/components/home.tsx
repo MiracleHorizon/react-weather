@@ -2,12 +2,13 @@ import { useMemo } from 'react'
 import { twJoin } from 'tailwind-merge'
 
 import Divider from '@ui/Divider'
-import DateWidget from './widgets/DateWidget'
-import LocationWidget from './widgets/LocationWidget'
+import DateWidget from '@components/widgets/DateWidget'
+import LocationWidget from '@components/widgets/LocationWidget'
 import SunStateWidget from './widgets/SunStateWidget'
-import TemperatureWidget from './widgets/TemperatureWidget'
+import TemperatureWidget from '@components/widgets/TemperatureWidget'
 import WeatherDetailsWidget from './widgets/WeatherDetailsWidget'
 import { CurrentWeatherReport } from '@entities/weather'
+import { OPEN_WEATHER_TIMESTAMP_MULTIPLIER } from '@constants/api'
 import type { CurrentWeatherResponse } from '@models/weather'
 
 export default function Home({ currentWeatherResponse }: Props) {
@@ -54,11 +55,14 @@ export default function Home({ currentWeatherResponse }: Props) {
         ])}
       >
         <TemperatureWidget
-          mainTemperature={temperature.main}
+          temperature={temperature.main}
           weatherIconClassName={iconClassName}
         />
         <LocationWidget {...location} />
-        <DateWidget dateTimestamp={dateTimestamp} />
+        <DateWidget
+          dateTimestamp={dateTimestamp * OPEN_WEATHER_TIMESTAMP_MULTIPLIER}
+          dateFormat='d MMMM, yyyy'
+        />
       </div>
       <div className='flex w-full flex-col items-center'>
         <WeatherDetailsWidget
