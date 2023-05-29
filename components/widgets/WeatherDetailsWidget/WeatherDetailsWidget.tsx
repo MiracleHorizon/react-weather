@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 import WeatherDetailsItem from './WeatherDetailsItem'
 import { getUnitSystemCookie } from '@lib/cookies/getUnitSystemCookie'
@@ -11,7 +12,8 @@ export default function WeatherDetailsWidget({
   clouds,
   pressure,
   humidity,
-  wind
+  wind,
+  className
 }: Props) {
   const { unitSystemCookie: unitSystem } = getUnitSystemCookie()
   const unitSystemPostfixesHandler = useMemo(() => {
@@ -52,7 +54,7 @@ export default function WeatherDetailsWidget({
   }, [clouds, humidity, pressure, wind.speed, wind.deg, windSpeedPostfix])
 
   return (
-    <section className='mt-[8px] w-full'>
+    <section className={twMerge('w-full', className)}>
       <ul className='flex w-full flex-col items-center [440px-max]:px-[10px]'>
         {items.map(item => (
           <WeatherDetailsItem key={item.title} {...item} />
@@ -65,4 +67,5 @@ export default function WeatherDetailsWidget({
 interface Props extends Pick<MainWeatherInfo, 'humidity' | 'pressure'> {
   wind: Wind
   clouds: number
+  className?: string
 }

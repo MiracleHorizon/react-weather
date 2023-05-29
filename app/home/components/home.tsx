@@ -4,9 +4,9 @@ import { twJoin } from 'tailwind-merge'
 import Divider from '@ui/Divider'
 import DateWidget from '@components/widgets/DateWidget'
 import LocationWidget from '@components/widgets/LocationWidget'
-import SunStateWidget from './widgets/SunStateWidget'
 import TemperatureWidget from '@components/widgets/TemperatureWidget'
-import WeatherDetailsWidget from './widgets/WeatherDetailsWidget'
+import WeatherDetailsWidget from '@components/widgets/WeatherDetailsWidget'
+import SunStateWidget from './widgets/SunStateWidget'
 import { CurrentWeatherReport } from '@entities/weather'
 import { OPEN_WEATHER_TIMESTAMP_MULTIPLIER } from '@constants/api'
 import type { CurrentWeatherResponse } from '@models/weather'
@@ -70,6 +70,7 @@ export default function Home({ currentWeatherResponse }: Props) {
           clouds={clouds.all}
           humidity={humidity}
           pressure={pressure}
+          className='mt-[8px]'
         />
         <Divider className='my-[10px] [440px-max]:w-[calc(100%-24px)]' />
         <SunStateWidget {...sunState} />
