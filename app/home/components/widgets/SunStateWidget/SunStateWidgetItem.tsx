@@ -1,8 +1,6 @@
 import { twJoin } from 'tailwind-merge'
 import type { ReactNode } from 'react'
 
-import { OPEN_WEATHER_TIMESTAMP_MULTIPLIER } from '@constants/api'
-
 export default function SunStateWidgetItem({
   title,
   icon,
@@ -10,7 +8,7 @@ export default function SunStateWidgetItem({
 }: Props) {
   function formatDate() {
     const locale = 'en-US'
-    const date = new Date(dateTimestamp * OPEN_WEATHER_TIMESTAMP_MULTIPLIER)
+    const date = new Date(dateTimestamp)
     const dateOptions: Intl.DateTimeFormatOptions = {
       hourCycle: 'h12',
       hour: '2-digit',

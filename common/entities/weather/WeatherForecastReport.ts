@@ -1,5 +1,5 @@
 import { WeatherReport } from './WeatherReport'
-import { WeatherIconsHandler } from '@utils/WeatherIconsHandler'
+import { WeatherIconsHandler } from '@utils/weather/WeatherIconsHandler'
 import type { ReportLocation } from '@models/ReportLocation'
 import type { IconClassNameImpl, LocationImpl } from './types'
 import type {

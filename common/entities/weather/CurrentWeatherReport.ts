@@ -1,5 +1,7 @@
 import { WeatherReport } from './WeatherReport'
-import { WeatherIconsHandler } from '@utils/WeatherIconsHandler'
+import { SunStateHandler } from '@utils/weather/SunStateHandler'
+import { WeatherIconsHandler } from '@utils/weather/WeatherIconsHandler'
+import { OPEN_WEATHER_TIMESTAMP_MULTIPLIER } from '@constants/api'
 import { NIGHT_TIME_END_HOUR, NIGHT_TIME_START_HOUR } from '@constants/date'
 import type { SunState } from '@models/SunState'
 import type { ReportLocation } from '@models/ReportLocation'
@@ -23,18 +25,22 @@ export class CurrentWeatherReport
   }
 
   private get isNightTimeReport(): boolean {
-    // NOTE: Open Weather API возвращает timezone offset в формате секунд
-    const locationTimezoneOffset = this.report.timezone / (60 * 60)
-
-    const locationDate = this.dateHandler.getDateWithLocationTimezone(
-      locationTimezoneOffset
-    )
+    const locationDate = this.getLocationDate()
     const locationHours = locationDate.getHours()
-
     return !(
       locationHours >= NIGHT_TIME_END_HOUR &&
       locationHours <= NIGHT_TIME_START_HOUR
     )
+  }
+
+  private getLocationDate(): Date {
+    // NOTE: Open Weather API возвращает timezone offset в формате секунд
+    const locationTimezoneOffset = this.getLocationTimezoneOffset()
+    return this.dateHandler.getDateWithLocationTimezone(locationTimezoneOffset)
+  }
+
+  private getLocationTimezoneOffset(): number {
+    return this.report.timezone / (60 * 60)
   }
 
   public get iconClassName(): string {
@@ -51,6 +57,11 @@ export class CurrentWeatherReport
 
   public get sunState(): SunState {
     const { sunrise, sunset } = this.report.sys
-    return { sunrise, sunset }
+    const locationTimezoneOffset = this.getLocationTimezoneOffset()
+    const sunStateHandler = new SunStateHandler({
+      sunrise: sunrise * OPEN_WEATHER_TIMESTAMP_MULTIPLIER,
+      sunset: sunset * OPEN_WEATHER_TIMESTAMP_MULTIPLIER
+    })
+    return sunStateHandler.adaptSunStateToLocationTime(locationTimezoneOffset)
   }
 }
