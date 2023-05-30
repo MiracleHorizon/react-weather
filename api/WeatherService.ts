@@ -1,31 +1,49 @@
-import type { Response } from 'next/dist/compiled/@edge-runtime/primitives/fetch'
+import { Response } from 'next/dist/compiled/@edge-runtime/primitives/fetch'
 
 import { OpenWeatherEndpoint } from '@models/api/OpenWeatherEndpoint'
 import { NotFoundCityException } from '@exceptions/NotFoundCityException'
 import { WrongCredentialsException } from '@exceptions/WrongCredentialsException'
-import { OPEN_WEATHER_API, OPEN_WEATHER_BASE_ENDPOINT } from '@constants/api'
 import {
   NOT_FOUND_STATUS,
   UNAUTHORIZED_STATUS
 } from '@constants/responseStatuses'
-import type { CurrentWeatherResponse, ForecastResponse } from '@models/weather'
+import { OPEN_WEATHER_API, OPEN_WEATHER_BASE_ENDPOINT } from '@constants/api'
+import type {
+  CurrentWeatherResponse,
+  WeatherForecastResponse
+} from '@models/weather'
+import type { Geolocation } from '@models/Geolocation'
 
 interface Constructor {
-  apiKey: Readonly<string>
-  unitSystem: Readonly<string>
-  city: Readonly<string>
+  apiKey: string
+  unitSystem: string
+  city: string | null
+  geolocation: Geolocation | null
+  priority: Priority
 }
+
+type Priority = 'city' | 'geolocation'
 
 export class WeatherService {
   private readonly baseUrl: string = OPEN_WEATHER_API
   private readonly apiKey: string
   private readonly unitSystem: string
-  private readonly city: string
+  private readonly city: string | null
+  private readonly geolocation: Geolocation | null
+  private readonly priority: Priority
 
-  constructor({ city, apiKey, unitSystem }: Constructor) {
+  constructor({
+    apiKey,
+    unitSystem,
+    city,
+    geolocation,
+    priority
+  }: Constructor) {
     this.apiKey = apiKey
     this.unitSystem = unitSystem
     this.city = city
+    this.geolocation = geolocation
+    this.priority = priority
   }
 
   public async fetchCurrentWeather(): Promise<CurrentWeatherResponse> {
@@ -33,21 +51,22 @@ export class WeatherService {
       const url = this.getCurrentWeatherRequestURL()
       const response = await fetch(url, {
         next: {
-          revalidate: 3 * 60
+          revalidate: 5 * 60
         }
       })
 
       if (!response.ok) {
-        await this.handleResponseError(response)
+        await this.handleResponseErrorStatus(response)
       }
 
       return response.json()
     } catch (err) {
+      console.log(err)
       throw err
     }
   }
 
-  public async fetchWeatherForecast(): Promise<ForecastResponse> {
+  public async fetchWeatherForecast(): Promise<WeatherForecastResponse> {
     try {
       const url = this.getWeatherForecastRequestURL()
       const response = await fetch(url, {
@@ -57,11 +76,12 @@ export class WeatherService {
       })
 
       if (!response.ok) {
-        await this.handleResponseError(response)
+        await this.handleResponseErrorStatus(response)
       }
 
       return response.json()
     } catch (err) {
+      console.log(err)
       throw err
     }
   }
@@ -80,12 +100,42 @@ export class WeatherService {
     return this.setSearchParamsToURL(url, searchParams)
   }
 
+  // TODO: Сочетание приоритетов и наличия данных
   private getSearchParams(): URLSearchParams {
-    return new URLSearchParams({
-      q: this.city,
+    const baseParams = {
       units: this.unitSystem,
-      appid: this.apiKey
-    })
+      appid: this.apiKey,
+      lang: 'en'
+    }
+
+    if (this.geolocation && this.isGeolocationPriority()) {
+      return new URLSearchParams({
+        lat: this.geolocation.lat.toString(),
+        lon: this.geolocation.lon.toString(),
+        ...baseParams
+      })
+    }
+
+    if (this.city && this.isCityPriority()) {
+      return new URLSearchParams({
+        q: this.city,
+        ...baseParams
+      })
+    }
+
+    if (!this.city && !this.geolocation) {
+      throw new Error('Missing information about the request location')
+    }
+
+    return new URLSearchParams(baseParams)
+  }
+
+  private isGeolocationPriority(): boolean {
+    return this.priority === 'geolocation'
+  }
+
+  private isCityPriority(): boolean {
+    return this.priority === 'city'
   }
 
   private setSearchParamsToURL(url: URL, searchParams: URLSearchParams): URL {
@@ -95,7 +145,7 @@ export class WeatherService {
     return url
   }
 
-  private async handleResponseError({ status }: Response): Promise<void> {
+  private async handleResponseErrorStatus({ status }: Response): Promise<void> {
     if (this.isNotFoundStatus(status)) {
       return Promise.reject(new NotFoundCityException())
     }
