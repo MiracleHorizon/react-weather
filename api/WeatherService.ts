@@ -1,9 +1,11 @@
 import { Response } from 'next/dist/compiled/@edge-runtime/primitives/fetch'
 
+import { BadRequestException } from '@exceptions/BadRequestException'
 import { OpenWeatherEndpoint } from '@models/api/OpenWeatherEndpoint'
 import { NotFoundCityException } from '@exceptions/NotFoundCityException'
 import { WrongCredentialsException } from '@exceptions/WrongCredentialsException'
 import {
+  BAD_REQUEST_STATUS,
   NOT_FOUND_STATUS,
   UNAUTHORIZED_STATUS
 } from '@constants/responseStatuses'
@@ -100,7 +102,6 @@ export class WeatherService {
     return this.setSearchParamsToURL(url, searchParams)
   }
 
-  // TODO: Сочетание приоритетов и наличия данных
   private getSearchParams(): URLSearchParams {
     const baseParams = {
       units: this.unitSystem,
@@ -117,6 +118,21 @@ export class WeatherService {
     }
 
     if (this.city && this.isCityPriority()) {
+      return new URLSearchParams({
+        q: this.city,
+        ...baseParams
+      })
+    }
+
+    if (!this.city && this.isCityPriority() && this.geolocation) {
+      return new URLSearchParams({
+        lat: this.geolocation.lat.toString(),
+        lon: this.geolocation.lon.toString(),
+        ...baseParams
+      })
+    }
+
+    if (!this.geolocation && this.isGeolocationPriority() && this.city) {
       return new URLSearchParams({
         q: this.city,
         ...baseParams
@@ -153,6 +169,10 @@ export class WeatherService {
     if (this.isUnauthorizedStatus(status)) {
       return Promise.reject(new WrongCredentialsException())
     }
+
+    if (this.isBadRequestStatus(status)) {
+      return Promise.reject(new BadRequestException())
+    }
   }
 
   private isNotFoundStatus(responseStatus: number): boolean {
@@ -161,5 +181,9 @@ export class WeatherService {
 
   private isUnauthorizedStatus(responseStatus: number): boolean {
     return responseStatus === UNAUTHORIZED_STATUS
+  }
+
+  private isBadRequestStatus(responseStatus: number): boolean {
+    return responseStatus === BAD_REQUEST_STATUS
   }
 }
