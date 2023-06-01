@@ -1,9 +1,9 @@
 import { API_KEY } from '@constants/api'
 
 import { WeatherService } from '@api/WeatherService'
-import { getCityCookie } from '@lib/cookies/getCityCookie'
-import { getUnitSystemCookie } from '@lib/cookies/getUnitSystemCookie'
-import { getGeolocationCookie } from '@lib/cookies/getGeolocationCookie'
+import { getCityCookie } from '@lib/cookies/city'
+import { getUnitSystemCookie } from '@lib/cookies/unitSystem'
+import { getGeolocationCookie } from '@lib/cookies/geolocation'
 import { WrongCredentialsException } from '@exceptions/WrongCredentialsException'
 
 export function createWeatherService(): Result {

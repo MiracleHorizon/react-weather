@@ -1,7 +1,7 @@
 'use client'
 
 import EnterCityForm from './EnterCityForm'
-import { setCityCookie } from '@lib/cookies/setCityCookie'
+import { setCityCookie } from '@lib/cookies/city'
 
 export default function EnterCity() {
   async function handleSubmitForm(value: string) {

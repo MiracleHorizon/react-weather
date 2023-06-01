@@ -1,9 +1,9 @@
 import ThemeToggleSection from './sections/ThemeToggleSection'
 import LanguageSection from './sections/LanguageSection'
 import HourCycleSection from './sections/HourCycleSection'
-import { getThemeCookie } from '@lib/cookies/getThemeCookie'
-import { getLanguageCookie } from '@lib/cookies/getLanguageCookie'
-import { getHourCycleCookie } from '@lib/cookies/getHourCycleCookie'
+import { getThemeCookie } from '@lib/cookies/theme'
+import { getLanguageCookie } from '@lib/cookies/language'
+import { getHourCycleCookie } from '@lib/cookies/hourCycle'
 
 export default function Settings() {
   const { withDarkMode } = getThemeCookie()

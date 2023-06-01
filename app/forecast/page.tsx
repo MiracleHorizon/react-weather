@@ -4,8 +4,8 @@ import Forecast from './components'
 import Landing from '@components/Landing'
 import { writePageTitle } from '@helpers/writePageTitle'
 import { createWeatherService } from '@lib/createWeatherService'
-import { getGeolocationCookie } from '@lib/cookies/getGeolocationCookie'
-import { getCityCookie } from '@lib/cookies/getCityCookie'
+import { getGeolocationCookie } from '@lib/cookies/geolocation'
+import { getCityCookie } from '@lib/cookies/city'
 
 export const metadata: Metadata = {
   title: writePageTitle('Weekly')
