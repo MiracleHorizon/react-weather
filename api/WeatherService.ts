@@ -4,17 +4,13 @@ import { BadRequestException } from '@exceptions/BadRequestException'
 import { OpenWeatherEndpoint } from '@models/api/OpenWeatherEndpoint'
 import { NotFoundCityException } from '@exceptions/NotFoundCityException'
 import { WrongCredentialsException } from '@exceptions/WrongCredentialsException'
-import {
-  BAD_REQUEST_STATUS,
-  NOT_FOUND_STATUS,
-  UNAUTHORIZED_STATUS
-} from '@constants/responseStatuses'
 import { OPEN_WEATHER_API, OPEN_WEATHER_BASE_ENDPOINT } from '@constants/api'
 import type {
   CurrentWeatherResponse,
   WeatherForecastResponse
 } from '@models/weather'
 import type { Geolocation } from '@models/Geolocation'
+import { ResponseStatusesHandler } from '@utils/ResponseStatusesHandler'
 
 interface Constructor {
   apiKey: string
@@ -162,28 +158,16 @@ export class WeatherService {
   }
 
   private async handleResponseErrorStatus({ status }: Response): Promise<void> {
-    if (this.isNotFoundStatus(status)) {
+    if (ResponseStatusesHandler.isNotFoundStatus(status)) {
       return Promise.reject(new NotFoundCityException())
     }
 
-    if (this.isUnauthorizedStatus(status)) {
+    if (ResponseStatusesHandler.isUnauthorizedStatus(status)) {
       return Promise.reject(new WrongCredentialsException())
     }
 
-    if (this.isBadRequestStatus(status)) {
+    if (ResponseStatusesHandler.isBadRequestStatus(status)) {
       return Promise.reject(new BadRequestException())
     }
-  }
-
-  private isNotFoundStatus(responseStatus: number): boolean {
-    return responseStatus === NOT_FOUND_STATUS
-  }
-
-  private isUnauthorizedStatus(responseStatus: number): boolean {
-    return responseStatus === UNAUTHORIZED_STATUS
-  }
-
-  private isBadRequestStatus(responseStatus: number): boolean {
-    return responseStatus === BAD_REQUEST_STATUS
   }
 }
