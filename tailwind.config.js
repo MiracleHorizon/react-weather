@@ -6,6 +6,9 @@ const tailwindConfig = {
   content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
+      '[350px-max]': {
+        max: '350px'
+      },
       '[400px-max]': {
         max: '400px'
       },
