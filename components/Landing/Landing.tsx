@@ -16,31 +16,27 @@ const roboto = Roboto({
   weight: ['400', '500'],
   subsets: ['latin'],
   style: 'normal',
-  preload: true,
-  variable: '--font-roboto'
+  preload: true
 })
 
 const inter = Inter({
   weight: ['400', '500'],
   subsets: ['latin'],
   style: 'normal',
-  preload: true,
-  variable: '--font-inter'
+  preload: true
 })
 
 export default function Landing() {
   return (
-    <main
+    <div
       className={twJoin([
+        'w-full',
         'flex',
-        'w-[550px]',
         'flex-col',
         'items-center',
         'justify-center',
         'rounded-3xl',
-        'bg-white',
-        'pb-[8px]',
-        'shadow-md'
+        'pb-[8px]'
       ])}
     >
       <article className='pt-[25px]'>
@@ -66,7 +62,6 @@ export default function Landing() {
           'flex-col',
           'items-center',
           'px-[50px]',
-          'pb-[30px]',
           inter.className
         ])}
       >
@@ -74,6 +69,6 @@ export default function Landing() {
         <DividerWithText text='or' />
         <UserGeolocationButton />
       </section>
-    </main>
+    </div>
   )
 }

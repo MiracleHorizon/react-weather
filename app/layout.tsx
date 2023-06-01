@@ -11,8 +11,7 @@ const rubik = Rubik({
   weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
   style: 'normal',
-  preload: true,
-  variable: '--font-rubik'
+  preload: true
 })
 
 export const metadata: Metadata = {
