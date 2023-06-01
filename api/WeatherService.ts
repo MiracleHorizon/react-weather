@@ -4,13 +4,14 @@ import { BadRequestException } from '@exceptions/BadRequestException'
 import { OpenWeatherEndpoint } from '@models/api/OpenWeatherEndpoint'
 import { NotFoundCityException } from '@exceptions/NotFoundCityException'
 import { WrongCredentialsException } from '@exceptions/WrongCredentialsException'
+import { ResponseStatusesHandler } from '@utils/ResponseStatusesHandler'
+import { UrlSearchParamsHandler } from '@utils/UrlSearchParamsHandler'
 import { OPEN_WEATHER_API, OPEN_WEATHER_BASE_ENDPOINT } from '@constants/api'
 import type {
   CurrentWeatherResponse,
   WeatherForecastResponse
 } from '@models/weather'
 import type { Geolocation } from '@models/Geolocation'
-import { ResponseStatusesHandler } from '@utils/ResponseStatusesHandler'
 
 interface Constructor {
   apiKey: string
@@ -95,7 +96,7 @@ export class WeatherService {
   private createRequestURL(endpoint: string): URL {
     const url = new URL(OPEN_WEATHER_BASE_ENDPOINT + endpoint, this.baseUrl)
     const searchParams = this.getSearchParams()
-    return this.setSearchParamsToURL(url, searchParams)
+    return UrlSearchParamsHandler.setSearchParamsToURL(url, searchParams)
   }
 
   private getSearchParams(): URLSearchParams {
@@ -148,13 +149,6 @@ export class WeatherService {
 
   private isCityPriority(): boolean {
     return this.priority === 'city'
-  }
-
-  private setSearchParamsToURL(url: URL, searchParams: URLSearchParams): URL {
-    for (const [key, value] of searchParams) {
-      url.searchParams.set(key, value)
-    }
-    return url
   }
 
   private async handleResponseErrorStatus({ status }: Response): Promise<void> {
