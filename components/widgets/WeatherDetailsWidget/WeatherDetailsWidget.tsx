@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import WeatherDetailsItem from './WeatherDetailsItem'
-import { getUnitSystemCookie } from '@lib/cookies/unitSystem'
+import { getUnitSystemCookie } from '@lib/cookies/getUnitSystemCookie'
 import { UnitSystemPostfixesHandler } from '@utils/weather/UnitSystemPostfixesHandler'
 import { AtmosphericPressureConverter } from '@utils/weather/AtmosphericPressureConverter'
 import { convertWindDirectionDegreesToCardinal } from '@helpers/convertWindDirectionDegreesToCardinal'

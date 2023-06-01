@@ -4,8 +4,8 @@ import Forecast from './components'
 import Landing from '@components/Landing'
 import { writePageTitle } from '@helpers/writePageTitle'
 import { createWeatherService } from '@lib/createWeatherService'
-import { getGeolocationCookie } from '@lib/cookies/geolocation'
-import { getCityCookie } from '@lib/cookies/city'
+import { getGeolocationCookie } from '@lib/cookies/getGeolocationCookie'
+import { getCityCookie } from '@lib/cookies/getCityCookie'
 
 export const metadata: Metadata = {
   title: writePageTitle('Weekly')
@@ -19,7 +19,7 @@ export default async function ForecastPage() {
     return <Landing />
   }
 
-  const { weatherService } = await createWeatherService()
+  const { weatherService } = createWeatherService()
   const weatherForecastResponse = await weatherService.fetchWeatherForecast()
 
   return <Forecast weatherForecastResponse={weatherForecastResponse} />

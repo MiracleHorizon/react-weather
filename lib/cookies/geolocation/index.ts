@@ -1,1 +1,0 @@
-export { getGeolocationCookie } from './getGeolocationCookie'

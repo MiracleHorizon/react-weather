@@ -4,7 +4,7 @@ import { twJoin } from 'tailwind-merge'
 import SunsetSvg from '@ui/svg/SunsetSvg'
 import SunriseSvg from '@ui/svg/SunriseSvg'
 import SunStateWidgetItem from './SunStateWidgetItem'
-import { getThemeCookie } from '@lib/cookies/theme'
+import { getThemeCookie } from '@lib/cookies/getThemeCookie'
 import type { SunState } from '@models/SunState'
 
 export default function SunStateWidget({ sunrise, sunset }: SunState) {

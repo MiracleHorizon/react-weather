@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import type { PropsWithChildren } from 'react'
 
 import NavigationMenu from '@components/NavigationMenu'
-import { getThemeCookie } from '@lib/cookies/theme'
+import { getThemeCookie } from '@lib/cookies/getThemeCookie'
 import '@public/styles/globals.css'
 
 const rubik = Rubik({

@@ -3,7 +3,8 @@
 import PaintBrushIcon from '@heroicons/react/24/outline/PaintBrushIcon'
 
 import Toggle from '@ui/Toggle'
-import { setDarkTheme, setLightTheme } from '@lib/cookies/theme'
+import { setDarkTheme } from '@lib/cookies/setDarkTheme'
+import { setLightTheme } from '@lib/cookies/setLightTheme'
 
 export default function ThemeToggleSection({ withDarkMode }: Props) {
   async function onChange(checked: boolean) {

@@ -4,7 +4,7 @@ import type { Dispatch, SetStateAction } from 'react'
 import LanguageIcon from '@heroicons/react/24/solid/LanguageIcon'
 
 import SettingsSection from '../SettingsSection'
-import { setLanguageCookie } from '@lib/cookies/language'
+import { setLanguageCookie } from '@lib/cookies/setLanguageCookie'
 import { Language } from '@models/Language'
 
 export default function LanguageSection({ language }: Props) {

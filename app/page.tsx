@@ -4,8 +4,8 @@ import Home from './home'
 import Landing from '@components/Landing'
 import { writePageTitle } from '@helpers/writePageTitle'
 import { createWeatherService } from '@lib/createWeatherService'
-import { getCityCookie } from '@lib/cookies/city'
-import { getGeolocationCookie } from '@lib/cookies/geolocation'
+import { getGeolocationCookie } from '@lib/cookies/getGeolocationCookie'
+import { getCityCookie } from '@lib/cookies/getCityCookie'
 
 export const metadata: Metadata = {
   title: writePageTitle('Home')
