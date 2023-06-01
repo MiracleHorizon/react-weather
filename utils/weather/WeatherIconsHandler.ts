@@ -29,6 +29,8 @@ export class WeatherIconsHandler {
         return this.mistIcon
       case WeatherDescription.HAZE:
         return this.hazeIcon
+      case WeatherDescription.FOG:
+        return this.fogIcon
       case WeatherDescription.FEW_CLOUDS:
         return this.fewCloudsIcon
       case WeatherDescription.SCATTERED_CLOUDS:
@@ -91,6 +93,10 @@ export class WeatherIconsHandler {
   }
 
   private get mistIcon(): string {
+    return `wi-${this.isDay ? 'day-fog' : 'night-fog'}`
+  }
+
+  private get fogIcon(): string {
     return `wi-${this.isDay ? 'day-fog' : 'night-fog'}`
   }
 

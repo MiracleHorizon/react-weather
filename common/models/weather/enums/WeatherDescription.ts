@@ -12,5 +12,6 @@ export enum WeatherDescription {
   SNOW = 'snow',
   LIGHT_SHOW = 'light snow',
   HAZE = 'haze',
-  MIST = 'mist'
+  MIST = 'mist',
+  FOG = 'fog'
 }
