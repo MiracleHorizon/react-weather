@@ -25,6 +25,7 @@ export default function Home({ currentWeatherResponse }: Props) {
     report: {
       wind,
       clouds,
+      timezone,
       main: { humidity, pressure }
     }
   } = currentWeatherReport
@@ -60,7 +61,11 @@ export default function Home({ currentWeatherResponse }: Props) {
           weatherIconClassName={iconClassName}
         />
         <LocationWidget {...location} />
-        <DateWidget dateTimestamp={dateTimestamp} dateFormat='d MMMM, yyyy' />
+        <DateWidget
+          dateTimestamp={dateTimestamp}
+          dateFormat='d MMMM, yyyy'
+          timezone={timezone}
+        />
       </div>
       <div className='flex w-full flex-col items-center'>
         <WeatherDetailsWidget

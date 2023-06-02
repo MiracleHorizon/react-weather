@@ -3,6 +3,7 @@ import { SunStateHandler } from '@utils/weather/SunStateHandler'
 import { WeatherIconsHandler } from '@utils/weather/WeatherIconsHandler'
 import { OPEN_WEATHER_TIMESTAMP_MULTIPLIER } from '@constants/api'
 import { NIGHT_TIME_END_HOUR, NIGHT_TIME_START_HOUR } from '@constants/date'
+import { getOpenWeatherTimezoneOffset } from '@helpers/getOpenWeatherTimezoneOffset'
 import type { SunState } from '@models/SunState'
 import type { ReportLocation } from '@models/ReportLocation'
 import type { CurrentWeatherReportModel } from '@models/weather'
@@ -34,13 +35,9 @@ export class CurrentWeatherReport
   }
 
   private getLocationDate(): Date {
-    // NOTE: Open Weather API возвращает timezone offset в формате секунд
-    const locationTimezoneOffset = this.getLocationTimezoneOffset()
+    const timezone = this.report.timezone
+    const locationTimezoneOffset = getOpenWeatherTimezoneOffset(timezone)
     return this.dateHandler.getDateWithLocationTimezone(locationTimezoneOffset)
-  }
-
-  private getLocationTimezoneOffset(): number {
-    return this.report.timezone / (60 * 60)
   }
 
   public get iconClassName(): string {
@@ -57,7 +54,8 @@ export class CurrentWeatherReport
 
   public get sunState(): SunState {
     const { sunrise, sunset } = this.report.sys
-    const locationTimezoneOffset = this.getLocationTimezoneOffset()
+    const timezone = this.report.timezone
+    const locationTimezoneOffset = getOpenWeatherTimezoneOffset(timezone)
     const sunStateHandler = new SunStateHandler({
       sunrise: sunrise * OPEN_WEATHER_TIMESTAMP_MULTIPLIER,
       sunset: sunset * OPEN_WEATHER_TIMESTAMP_MULTIPLIER
