@@ -1,15 +1,11 @@
+import { format } from 'date-fns'
+import { enUS } from 'date-fns/locale'
+
 export class DateFns {
-  public static async importFormatAndLocale() {
-    try {
-      return {
-        format: await import('date-fns/format').then(module => module.default),
-        locale: await import('date-fns/locale/en-US').then(
-          module => module.default
-        )
-      }
-    } catch (err) {
-      console.log(err)
-      throw err
-    }
+  public static formatDate(date: string | number, dateFormat: string): string {
+    return format(new Date(date), dateFormat, {
+      locale: enUS,
+      weekStartsOn: 1
+    })
   }
 }
