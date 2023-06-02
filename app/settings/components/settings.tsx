@@ -1,14 +1,17 @@
 import ThemeToggleSection from './sections/ThemeToggleSection'
 import LanguageSection from './sections/LanguageSection'
 import HourCycleSection from './sections/HourCycleSection'
+import UnitSystemSection from './sections/UnitSystemSection'
 import { getThemeCookie } from '@lib/cookies/getThemeCookie'
 import { getLanguageCookie } from '@lib/cookies/getLanguageCookie'
 import { getHourCycleCookie } from '@lib/cookies/getHourCycleCookie'
+import { getUnitSystemCookie } from '@lib/cookies/getUnitSystemCookie'
 
 export default function Settings() {
   const { withDarkMode } = getThemeCookie()
   const { languageCookie: language } = getLanguageCookie()
   const { hourCycleCookie: hourCycle } = getHourCycleCookie()
+  const { unitSystemCookie: unitSystem } = getUnitSystemCookie()
 
   return (
     <div className='w-full px-[24px] pt-[10px] [440px-max]:px-[18px] [550px-max]:pb-[12px]'>
@@ -21,6 +24,7 @@ export default function Settings() {
         <ThemeToggleSection withDarkMode={withDarkMode} />
         <LanguageSection language={language} />
         <HourCycleSection hourCycle={hourCycle} />
+        <UnitSystemSection unitSystem={unitSystem} />
       </div>
     </div>
   )
