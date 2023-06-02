@@ -2,10 +2,12 @@ import { memo } from 'react'
 import { Listbox } from '@headlessui/react'
 import { twJoin } from 'tailwind-merge'
 
-function SettingsOption<T extends string>({ value }: Props<T>) {
+import type { SettingsElement } from '../SettingsSection.types'
+
+function SettingsOption<T extends string>({ item }: Props<T>) {
   return (
     <Listbox.Option
-      value={value}
+      value={item}
       className={({ active }) =>
         twJoin([
           'relative',
@@ -25,7 +27,7 @@ function SettingsOption<T extends string>({ value }: Props<T>) {
             selected ? 'font-medium' : 'font-normal'
           )}
         >
-          {value}
+          {item.title}
         </span>
       )}
     </Listbox.Option>
@@ -35,5 +37,5 @@ function SettingsOption<T extends string>({ value }: Props<T>) {
 export default memo(SettingsOption)
 
 interface Props<T extends string> {
-  value: T
+  item: SettingsElement<T>
 }

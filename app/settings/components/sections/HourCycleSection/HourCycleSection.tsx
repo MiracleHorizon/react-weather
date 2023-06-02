@@ -1,28 +1,27 @@
 'use client'
 
-import { type Dispatch, type SetStateAction } from 'react'
-import ClockIcon from '@heroicons/react/24/outline/ClockIcon'
 import Cookie from 'js-cookie'
+import ClockIcon from '@heroicons/react/24/outline/ClockIcon'
 
-import SettingsSection from '../SettingsSection'
+import SettingsSection from 'app/settings/components/SettingsSection'
 import { HOUR_CYCLE_COOKIE_NAME } from '@constants/cookie'
 import type { HourCycle } from '@app-types/HourCycle'
-
-const items = ['24 hours', '12 hours']
+import type { SetState } from '@app-types/SetState'
+import { h12Item, h24Item, type HourCycleOption, items } from './data'
 
 export default function HourCycleSection({ hourCycle }: Props) {
   function handleChange(
-    value: string,
-    setHourCycle: Dispatch<SetStateAction<string>>
+    element: HourCycleOption,
+    setHourCycle: SetState<HourCycleOption>
   ) {
-    if (value.startsWith('24')) {
+    if (element.value === 'h24') {
       Cookie.set(HOUR_CYCLE_COOKIE_NAME, 'h24')
-      setHourCycle('24 hours')
+      setHourCycle(h24Item)
     }
 
-    if (value.startsWith('12')) {
+    if (element.value === 'h12') {
       Cookie.set(HOUR_CYCLE_COOKIE_NAME, 'h12')
-      setHourCycle('12 hours')
+      setHourCycle(h12Item)
     }
   }
 
@@ -30,7 +29,7 @@ export default function HourCycleSection({ hourCycle }: Props) {
     <SettingsSection
       title='Hour cycle'
       icon={<ClockIcon className='dark:stroke-gray-100' />}
-      initialState={hourCycle === 'h12' ? '12 hours' : '24 hours'}
+      initialState={hourCycle === 'h12' ? h12Item : h24Item}
       items={items}
       handleChange={handleChange}
     />
