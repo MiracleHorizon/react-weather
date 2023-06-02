@@ -1,4 +1,4 @@
-export type { TemperatureModel } from './Temperature'
+export type { TemperatureModel } from './api/general/Temperature'
 
 // Api
 export type { DailyForecastModel } from './api/DailyForecast'
@@ -21,7 +21,7 @@ export type { CurrentWeatherReportModel } from './api/reports/CurrentWeatherRepo
 export type { WeatherForecastReportModel } from './api/reports/WeatherForecastReport'
 
 // Api/responses
-export type { ForecastResponse } from './api/responses/ForecastResponse'
+export type { WeatherForecastResponse } from './api/responses/WeatherForecastResponse'
 export type { CurrentWeatherResponse } from './api/responses/CurrentWeatherResponse'
 
 // Enums

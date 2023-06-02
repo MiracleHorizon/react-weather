@@ -42,6 +42,7 @@
       "@layouts/*": ["layouts/*"],
       "@components/*": ["components/*"],
       "@ui/*": ["components/ui/*"],
+      "@stores/*": ["stores/*"],
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],
       "@router/*": ["common/router/*"],
