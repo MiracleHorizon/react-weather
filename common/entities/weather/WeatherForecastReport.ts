@@ -1,24 +1,29 @@
 import { WeatherReport } from './WeatherReport'
 import { WeatherIconsHandler } from '@utils/weather/WeatherIconsHandler'
-import type { ReportLocation } from '@models/ReportLocation'
-import type { IconClassNameImpl, LocationImpl } from './types'
 import type {
   ForecastCity,
   PartOfDay,
   WeatherForecastReportModel
 } from '@models/weather'
+import type { ReportLocation } from '@models/ReportLocation'
+import type { IconClassNameImpl, LocationImpl } from './types'
+
+interface Constructor {
+  report: WeatherForecastReportModel
+  forecastCity: ForecastCity
+}
 
 export class WeatherForecastReport
   extends WeatherReport
   implements LocationImpl, IconClassNameImpl
 {
   private readonly weatherIconsHandler: WeatherIconsHandler
-  private readonly forecastReport: WeatherForecastReportModel
   private readonly forecastCity: ForecastCity
+  public readonly report: WeatherForecastReportModel
 
-  constructor(report: WeatherForecastReportModel, forecastCity: ForecastCity) {
+  constructor({ report, forecastCity }: Constructor) {
     super(report)
-    this.forecastReport = report
+    this.report = report
     this.forecastCity = forecastCity
     this.weatherIconsHandler = new WeatherIconsHandler(
       !this.isNightTimeReport,
@@ -31,7 +36,7 @@ export class WeatherForecastReport
   }
 
   private get partOfDay(): PartOfDay {
-    return this.forecastReport.sys.pod
+    return this.report.sys.pod
   }
 
   public get iconClassName(): string {
