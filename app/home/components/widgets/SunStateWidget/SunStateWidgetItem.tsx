@@ -1,16 +1,20 @@
 import { twJoin } from 'tailwind-merge'
 import type { ReactNode } from 'react'
 
+import { getHourCycleCookie } from '@lib/cookies/getHourCycleCookie'
+
 export default function SunStateWidgetItem({
   title,
   icon,
   dateTimestamp
 }: Props) {
+  const { hourCycleCookie: hourCycle } = getHourCycleCookie()
+
   function formatDate() {
     const locale = 'en-US'
     const date = new Date(dateTimestamp)
     const dateOptions: Intl.DateTimeFormatOptions = {
-      hourCycle: 'h12',
+      hourCycle,
       hour: '2-digit',
       minute: '2-digit'
     }

@@ -7,11 +7,12 @@ import LocationWidget from '@components/widgets/LocationWidget'
 import TemperatureWidget from '@components/widgets/TemperatureWidget'
 import WeatherDetailsWidget from '@components/widgets/WeatherDetailsWidget'
 import SunStateWidget from './widgets/SunStateWidget'
+import { getUnitSystemCookie } from '@lib/cookies/getUnitSystemCookie'
 import { CurrentWeatherReport } from '@entities/weather'
-import { OPEN_WEATHER_TIMESTAMP_MULTIPLIER } from '@constants/api'
 import type { CurrentWeatherResponse } from '@models/weather'
 
 export default function Home({ currentWeatherResponse }: Props) {
+  const { unitSystemCookie: unitSystem } = getUnitSystemCookie()
   const currentWeatherReport = useMemo(() => {
     return new CurrentWeatherReport(currentWeatherResponse)
   }, [currentWeatherResponse])
@@ -20,11 +21,11 @@ export default function Home({ currentWeatherResponse }: Props) {
     location,
     temperature,
     iconClassName,
+    dateTimestamp,
     report: {
       wind,
       clouds,
-      main: { humidity, pressure },
-      dt: dateTimestamp
+      main: { humidity, pressure }
     }
   } = currentWeatherReport
 
@@ -46,8 +47,8 @@ export default function Home({ currentWeatherResponse }: Props) {
       <div
         className={twJoin([
           'mr-[20px]',
-          'w-[130px]',
-          'min-w-[130px]',
+          'w-[150px]',
+          'min-w-[150px]',
           '[650px-max]:mb-[12px]',
           '[650px-max]:mr-0',
           '[650px-max]:w-max',
@@ -59,17 +60,15 @@ export default function Home({ currentWeatherResponse }: Props) {
           weatherIconClassName={iconClassName}
         />
         <LocationWidget {...location} />
-        <DateWidget
-          dateTimestamp={dateTimestamp * OPEN_WEATHER_TIMESTAMP_MULTIPLIER}
-          dateFormat='d MMMM, yyyy'
-        />
+        <DateWidget dateTimestamp={dateTimestamp} dateFormat='d MMMM, yyyy' />
       </div>
       <div className='flex w-full flex-col items-center'>
         <WeatherDetailsWidget
           wind={wind}
-          clouds={clouds.all}
+          clouds={clouds}
           humidity={humidity}
           pressure={pressure}
+          unitSystem={unitSystem}
           className='mt-[8px]'
         />
         <Divider className='my-[10px] [440px-max]:w-[calc(100%-24px)]' />

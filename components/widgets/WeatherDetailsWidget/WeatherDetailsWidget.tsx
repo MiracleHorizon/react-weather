@@ -2,20 +2,23 @@ import { useMemo } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import WeatherDetailsItem from './WeatherDetailsItem'
-import { getUnitSystemCookie } from '@lib/cookies/getUnitSystemCookie'
 import { UnitSystemPostfixesHandler } from '@utils/weather/UnitSystemPostfixesHandler'
 import { AtmosphericPressureConverter } from '@utils/weather/AtmosphericPressureConverter'
 import { convertWindDirectionDegreesToCardinal } from '@helpers/convertWindDirectionDegreesToCardinal'
-import type { MainWeatherInfo, Wind } from '@models/weather'
+import type {
+  CurrentWeatherReportModel,
+  MainWeatherInfo
+} from '@models/weather'
+import type { UnitSystem } from '@models/UnitSystem'
 
 export default function WeatherDetailsWidget({
+  wind,
   clouds,
   pressure,
   humidity,
-  wind,
+  unitSystem,
   className
 }: Props) {
-  const { unitSystemCookie: unitSystem } = getUnitSystemCookie()
   const unitSystemPostfixesHandler = useMemo(() => {
     return new UnitSystemPostfixesHandler(unitSystem)
   }, [unitSystem])
@@ -25,7 +28,7 @@ export default function WeatherDetailsWidget({
     return [
       {
         title: 'Cloudy',
-        value: clouds,
+        value: clouds.all,
         postfix: '%',
         iconClassName:
           'wi-cloud wi-fw w-[15px] translate-x-[-1px] transform text-[17px]'
@@ -64,8 +67,9 @@ export default function WeatherDetailsWidget({
   )
 }
 
-interface Props extends Pick<MainWeatherInfo, 'humidity' | 'pressure'> {
-  wind: Wind
-  clouds: number
+interface Props
+  extends Pick<MainWeatherInfo, 'humidity' | 'pressure'>,
+    Pick<CurrentWeatherReportModel, 'wind' | 'clouds'> {
+  unitSystem: UnitSystem
   className?: string
 }
