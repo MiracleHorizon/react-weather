@@ -15,6 +15,12 @@ export class WeatherIconsHandler {
         return this.lightRainIcon
       case WeatherDescription.RAIN:
         return this.rainIcon
+      case WeatherDescription.HEAVY_RAIN:
+        return this.heavyRainIcon
+      case WeatherDescription.LIGHT_SHOWER_RAIN:
+        return this.showerRainIcon
+      case WeatherDescription.HEAVY_SHOWER_RAIN:
+        return this.showerRainIcon
       case WeatherDescription.SHOWER_RAIN:
         return this.showerRainIcon
       case WeatherDescription.MODERATE_RAIN:
@@ -66,6 +72,10 @@ export class WeatherIconsHandler {
 
   private get lightRainIcon(): string {
     return 'wi-rain'
+  }
+
+  private get heavyRainIcon(): string {
+    return 'wi-showers'
   }
 
   private get showerRainIcon(): string {
