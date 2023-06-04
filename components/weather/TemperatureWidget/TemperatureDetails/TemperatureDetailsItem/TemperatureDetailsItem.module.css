@@ -1,0 +1,7 @@
+.item:first-of-type span {
+  left: -18px;
+}
+
+.item:last-of-type span {
+  right: -20px;
+}

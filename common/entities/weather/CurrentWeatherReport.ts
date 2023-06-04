@@ -1,10 +1,12 @@
 import { WeatherReport } from './WeatherReport'
 import { SunStateHandler } from '@utils/weather/SunStateHandler'
 import { WeatherIconsHandler } from '@utils/weather/WeatherIconsHandler'
+import { getOpenWeatherTimezoneOffset } from '@helpers/getOpenWeatherTimezoneOffset'
 import { OPEN_WEATHER_TIMESTAMP_MULTIPLIER } from '@constants/api'
 import { NIGHT_TIME_END_HOUR, NIGHT_TIME_START_HOUR } from '@constants/date'
-import { getOpenWeatherTimezoneOffset } from '@helpers/getOpenWeatherTimezoneOffset'
+
 import type { SunState } from '@models/SunState'
+import type { DayDuration } from '@models/DayDuration'
 import type { ReportLocation } from '@models/ReportLocation'
 import type { CurrentWeatherReportModel } from '@models/weather'
 import type { IconClassNameImpl, LocationImpl } from './types'
@@ -14,6 +16,7 @@ export class CurrentWeatherReport
   implements LocationImpl, IconClassNameImpl
 {
   private readonly weatherIconsHandler: WeatherIconsHandler
+  private readonly sunStateHandler: SunStateHandler
   public readonly report: CurrentWeatherReportModel
 
   constructor(report: CurrentWeatherReportModel) {
@@ -23,6 +26,10 @@ export class CurrentWeatherReport
       !this.isNightTimeReport,
       this.description
     )
+    this.sunStateHandler = new SunStateHandler({
+      sunrise: this.report.sys.sunrise * OPEN_WEATHER_TIMESTAMP_MULTIPLIER,
+      sunset: this.report.sys.sunset * OPEN_WEATHER_TIMESTAMP_MULTIPLIER
+    })
   }
 
   private get isNightTimeReport(): boolean {
@@ -53,13 +60,19 @@ export class CurrentWeatherReport
   }
 
   public get sunState(): SunState {
-    const { sunrise, sunset } = this.report.sys
+    const locationTimezoneOffset = this.getLocationTimezoneOffset()
+    return this.sunStateHandler.adaptSunStateToLocationTime(
+      locationTimezoneOffset
+    )
+  }
+
+  public get dayDuration(): DayDuration {
+    const locationTimezoneOffset = this.getLocationTimezoneOffset()
+    return this.sunStateHandler.getDayDuration(locationTimezoneOffset)
+  }
+
+  private getLocationTimezoneOffset(): number {
     const timezone = this.report.timezone
-    const locationTimezoneOffset = getOpenWeatherTimezoneOffset(timezone)
-    const sunStateHandler = new SunStateHandler({
-      sunrise: sunrise * OPEN_WEATHER_TIMESTAMP_MULTIPLIER,
-      sunset: sunset * OPEN_WEATHER_TIMESTAMP_MULTIPLIER
-    })
-    return sunStateHandler.adaptSunStateToLocationTime(locationTimezoneOffset)
+    return getOpenWeatherTimezoneOffset(timezone)
   }
 }

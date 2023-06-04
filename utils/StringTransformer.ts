@@ -12,4 +12,11 @@ export class StringTransformer {
       .map(word => this.capitalizeWord(word))
       .join(' ')
   }
+
+  public static capitalizeFirstWord(string: string): string {
+    return string
+      .split(' ')
+      .map((word, i) => (i === 0 ? this.capitalizeWord(word) : word))
+      .join(' ')
+  }
 }
