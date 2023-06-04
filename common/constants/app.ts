@@ -1,1 +1,1 @@
-export const APP_NAME: string = 'Weather'
+export const APP_NAME: string = 'My.Weather'
