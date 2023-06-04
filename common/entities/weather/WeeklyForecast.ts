@@ -47,7 +47,7 @@ export class WeeklyForecast {
       return forecastReports
     })
 
-    return dailyForecastsData.map(data => ({ id: v4(), data: data }))
+    return dailyForecastsData.map(data => ({ id: v4(), data }))
   }
 
   private getDate(dateValue: string | number): number {

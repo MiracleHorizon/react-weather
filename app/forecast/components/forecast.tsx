@@ -1,5 +1,6 @@
 import { twJoin } from 'tailwind-merge'
 
+import ForecastContent from './ForecastContent'
 import type { WeatherForecastResponse } from '@models/weather'
 
 export default function Forecast({ weatherForecastResponse }: Props) {
@@ -12,10 +13,10 @@ export default function Forecast({ weatherForecastResponse }: Props) {
         'items-start',
         'justify-center',
         'px-[24px]',
-        'pt-[24px]'
+        'py-[16px]'
       ])}
     >
-      {weatherForecastResponse.city.name}
+      <ForecastContent weatherForecastResponse={weatherForecastResponse} />
     </div>
   )
 }
