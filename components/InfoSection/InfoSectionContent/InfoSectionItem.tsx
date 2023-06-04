@@ -1,9 +1,9 @@
 import { memo } from 'react'
 import { twJoin, twMerge } from 'tailwind-merge'
 
-import type { SectionItem } from '../HomeSection.types'
+import type { SectionItem } from '../InfoSection.types'
 
-function HomeSectionItem({
+function InfoSectionItem({
   title,
   value,
   postfix,
@@ -35,4 +35,4 @@ function HomeSectionItem({
   )
 }
 
-export default memo(HomeSectionItem)
+export default memo(InfoSectionItem)

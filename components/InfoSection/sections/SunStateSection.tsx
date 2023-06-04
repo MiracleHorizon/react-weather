@@ -1,4 +1,4 @@
-import HomeSection from '../HomeSection'
+import InfoSection from '../InfoSection'
 import { getHourCycleCookie } from '@lib/cookies/getHourCycleCookie'
 import type { SunState } from '@models/SunState'
 import type { DayDuration } from '@models/DayDuration'
@@ -38,7 +38,7 @@ export default function SunStateSection({
     return Intl.DateTimeFormat(locale, dateOptions).format(date)
   }
 
-  return <HomeSection title='Sunrise/Sunset' items={items} />
+  return <InfoSection title='Sunrise/Sunset' items={items} />
 }
 
 interface Props extends SunState {

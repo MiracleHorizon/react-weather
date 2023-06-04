@@ -1,6 +1,6 @@
 import { twJoin, twMerge } from 'tailwind-merge'
 
-import TemperatureWidget from 'components/weather/TemperatureWidget'
+import TemperatureWidget from '@components/widgets/TemperatureWidget'
 import { StringTransformer } from '@utils/StringTransformer'
 import type { TemperatureModel, WeatherDescription } from '@models/weather'
 import type { UnitSystem } from '@models/UnitSystem'
@@ -14,7 +14,10 @@ export default function WeatherCondition({
 }: Props) {
   return (
     <section
-      className={twMerge('flex w-full flex-col items-center', className)}
+      className={twMerge(
+        'flex w-full flex-col items-center rounded-2xl bg-gray-100 p-[8px]',
+        className
+      )}
     >
       <div className='flex w-[200px] flex-col items-center [550px-max]:w-[175px]'>
         <TemperatureWidget

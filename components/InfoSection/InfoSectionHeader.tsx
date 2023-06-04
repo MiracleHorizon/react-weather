@@ -1,8 +1,8 @@
 import { twJoin } from 'tailwind-merge'
 
-import type { Props } from './HomeSection.types'
+import type { Props } from './InfoSection.types'
 
-export default function HomeSectionHeader({ title }: Pick<Props, 'title'>) {
+export default function InfoSectionHeader({ title }: Pick<Props, 'title'>) {
   return (
     <header className='[550px-max]:text-center'>
       <article>

@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 
-import WeatherHeader from '@components/weather/WeatherHeader'
-import WeatherCondition from '@components/weather/WeatherCondition'
-import SunStateSection from './sections/SunStateSection'
-import WeatherDetailsSection from './sections/WeatherDetailsSection'
+import WeatherHeader from '@components/widgets/WeatherHeader'
+import WeatherCondition from '@components/widgets/WeatherCondition'
+import SunStateSection from '@components/InfoSection/sections/SunStateSection'
+import WeatherDetailsSection from '@components/InfoSection/sections/WeatherDetailsSection'
 import { CurrentWeatherReport } from '@entities/weather'
 import { getUnitSystemCookie } from '@lib/cookies/getUnitSystemCookie'
 import type { CurrentWeatherResponse } from '@models/weather'

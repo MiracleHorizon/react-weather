@@ -1,7 +1,7 @@
 import { twJoin } from 'tailwind-merge'
 
-import DateWidget from '@components/weather/DateWidget'
-import LocationWidget from '@components/weather/LocationWidget'
+import DateWidget from '@components/widgets/DateWidget'
+import LocationWidget from '@components/widgets/LocationWidget'
 import type { ReportLocation } from '@models/ReportLocation'
 
 export default function WeatherHeader({

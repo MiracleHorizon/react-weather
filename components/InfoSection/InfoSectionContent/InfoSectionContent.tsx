@@ -1,7 +1,7 @@
-import HomeSectionItem from './HomeSectionItem'
-import type { Props } from '../HomeSection.types'
+import HomeSectionItem from './InfoSectionItem'
+import type { Props } from '../InfoSection.types'
 
-export default function HomeSectionContent({ items }: Pick<Props, 'items'>) {
+export default function InfoSectionContent({ items }: Pick<Props, 'items'>) {
   return (
     <main className='mt-[8px] [550px-max]:mt-[6px]'>
       <ul>

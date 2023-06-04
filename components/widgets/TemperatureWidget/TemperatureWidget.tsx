@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { twJoin } from 'tailwind-merge'
 
-import WeatherIcon from '@components/weather/WeatherIcon'
+import WeatherIcon from '@components/widgets/WeatherIcon'
 import MainTemperature from './MainTemperature'
 import TemperatureDetails from './TemperatureDetails'
 import { UnitSystemPostfixesHandler } from '@utils/weather/UnitSystemPostfixesHandler'

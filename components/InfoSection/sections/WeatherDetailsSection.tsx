@@ -1,4 +1,4 @@
-import HomeSection from '../HomeSection'
+import InfoSection from '../InfoSection'
 import { WeatherDetailsHandler } from '@utils/weather/WeatherDetailsHandler'
 import type {
   BaseWeatherReport,
@@ -20,7 +20,7 @@ export default function WeatherDetailsSection({
   })
 
   return (
-    <HomeSection
+    <InfoSection
       title='Details'
       items={weatherDetailsHandler.getDetailsList()}
     />
