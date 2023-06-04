@@ -32,16 +32,19 @@ export default function RootLayout({ children }: PropsWithChildren) {
           className={twJoin([
             'relative',
             'flex',
+            'min-w-[300px]',
             'min-h-screen',
             'w-screen',
-            'items-center',
+            'items-start',
             'justify-center',
             'bg-gradient-to-r',
             'from-amber-300',
             'to-orange-500',
             'px-[24px]',
+            'pt-[100px]',
+            'pb-[80px]',
             'dark:bg-gradient-to-br',
-            'dark:from-slate-600',
+            'dark:from-slate-900',
             'dark:to-gray-800',
             '[440px-max]:px-[16px]',
             '[550px-max]:pb-[calc(45px+12px+6px)]',
@@ -59,7 +62,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
               'rounded-3xl',
               'bg-white',
               'shadow-md',
-              'dark:bg-gray-500'
+              'dark:bg-slate-700'
             ])}
           >
             {children}
