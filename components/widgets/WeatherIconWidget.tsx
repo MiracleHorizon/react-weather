@@ -1,6 +1,6 @@
 import { twJoin, twMerge } from 'tailwind-merge'
 
-export default function WeatherIcon({ iconClassName }: Props) {
+export default function WeatherIconWidget({ iconClassName }: Props) {
   return (
     <i
       className={twMerge(

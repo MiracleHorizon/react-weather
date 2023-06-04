@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 
-import WeatherHeader from '@components/widgets/WeatherHeader'
-import WeatherCondition from '@components/widgets/WeatherCondition'
+import WeatherHeader from '@components/WeatherHeader'
+import WeatherCondition from '@components/WeatherCondition'
 import SunStateSection from '@components/InfoSection/sections/SunStateSection'
 import WeatherDetailsSection from '@components/InfoSection/sections/WeatherDetailsSection'
 import { CurrentWeatherReport } from '@entities/weather'

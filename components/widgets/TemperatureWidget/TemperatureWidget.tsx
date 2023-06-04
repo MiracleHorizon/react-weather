@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { twJoin } from 'tailwind-merge'
 
-import WeatherIcon from '@components/widgets/WeatherIcon'
+import WeatherIconWidget from '@components/widgets/WeatherIconWidget'
 import MainTemperature from './MainTemperature'
 import TemperatureDetails from './TemperatureDetails'
 import { UnitSystemPostfixesHandler } from '@utils/weather/UnitSystemPostfixesHandler'
@@ -31,7 +31,7 @@ export default function TemperatureWidget({
       ])}
     >
       <div className='mb-[3px] flex items-center justify-center [550px-max]:mb-[6px]'>
-        <WeatherIcon iconClassName={`${iconClassName} mr-[12px]`} />
+        <WeatherIconWidget iconClassName={`${iconClassName} mr-[12px]`} />
         <MainTemperature
           temperature={temperature.temp}
           temperaturePostfix={temperaturePostfix}
