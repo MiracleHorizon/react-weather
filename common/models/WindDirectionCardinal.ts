@@ -1,4 +1,4 @@
-export enum WindDirection {
+export enum WindDirectionCardinal {
   N = 'N',
   NE = 'NE',
   E = 'E',

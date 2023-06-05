@@ -1,4 +1,4 @@
-import type { WeatherForecastReportModel } from '@models/weather'
+import type { WeatherForecastReportModel } from '@models/weather/index'
 
 export interface DailyForecastModel {
   id: string
