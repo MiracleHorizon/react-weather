@@ -7,6 +7,7 @@ import { WrongCredentialsException } from '@exceptions/WrongCredentialsException
 import { ResponseStatusesHandler } from '@utils/ResponseStatusesHandler'
 import { UrlSearchParamsHandler } from '@utils/UrlSearchParamsHandler'
 import { OPEN_WEATHER_API, OPEN_WEATHER_BASE_ENDPOINT } from '@constants/api'
+import { LocationPriority } from '@models/LocationPriority'
 import type {
   CurrentWeatherResponse,
   WeatherForecastResponse
@@ -18,10 +19,8 @@ interface Constructor {
   unitSystem: string
   city: string | null
   geolocation: Geolocation | null
-  priority: Priority
+  locationPriority: LocationPriority
 }
-
-type Priority = 'city' | 'geolocation'
 
 export class WeatherService {
   private readonly baseUrl: string = OPEN_WEATHER_API
@@ -29,20 +28,20 @@ export class WeatherService {
   private readonly unitSystem: string
   private readonly city: string | null
   private readonly geolocation: Geolocation | null
-  private readonly priority: Priority
+  private readonly locationPriority: LocationPriority
 
   constructor({
     apiKey,
     unitSystem,
     city,
     geolocation,
-    priority
+    locationPriority
   }: Constructor) {
     this.apiKey = apiKey
     this.unitSystem = unitSystem
     this.city = city
     this.geolocation = geolocation
-    this.priority = priority
+    this.locationPriority = locationPriority
   }
 
   public async fetchCurrentWeather(): Promise<CurrentWeatherResponse> {
@@ -144,11 +143,11 @@ export class WeatherService {
   }
 
   private isGeolocationPriority(): boolean {
-    return this.priority === 'geolocation'
+    return this.locationPriority === LocationPriority.GEOLOCATION
   }
 
   private isCityPriority(): boolean {
-    return this.priority === 'city'
+    return this.locationPriority === LocationPriority.CITY
   }
 
   private async handleResponseErrorStatus({ status }: Response): Promise<void> {
