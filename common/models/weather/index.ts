@@ -1,3 +1,5 @@
+export type { DailyForecastModel } from './DailyForecast'
+
 // Api/general
 export { WeatherDescription } from './api/general/WeatherDescription'
 export type { ForecastCity } from './api/general/ForecastCity'

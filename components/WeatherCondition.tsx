@@ -15,7 +15,17 @@ export default function WeatherCondition({
   return (
     <section
       className={twMerge(
-        'flex w-full flex-col items-center rounded-2xl bg-gray-100 p-[8px]',
+        twJoin([
+          'flex',
+          'w-full',
+          'flex-col',
+          'items-center',
+          'rounded-2xl',
+          'bg-gray-100',
+          'p-[8px]',
+          'shadow-md',
+          'dark:bg-slate-600'
+        ]),
         className
       )}
     >

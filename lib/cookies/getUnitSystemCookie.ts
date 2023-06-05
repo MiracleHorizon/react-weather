@@ -13,7 +13,7 @@ export function getUnitSystemCookie(): Result {
     cookieStore.set(UNIT_SYSTEM_COOKIE_NAME, UnitSystem.DEFAULT)
 
     return {
-      unitSystemCookie: UnitSystem.DEFAULT
+      unitSystemCookie: UnitSystem.METRIC
     }
   }
 
