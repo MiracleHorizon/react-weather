@@ -1,5 +1,5 @@
 .icon {
-  @apply h-[20px] w-[20px]
+  @apply h-[24px] w-[24px]
 }
 
 @media screen and (max-width: 550px) {

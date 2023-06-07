@@ -3,6 +3,12 @@ const tailwindConfig = {
   darkMode: 'class',
   content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    extend: {
+      height: {
+        'nav-menu-h': 'var(--nav-menu-h)',
+        'nav-menu-sm-h': 'var(--nav-menu-sm-h)'
+      }
+    },
     screens: {
       '[550px-441px]': {
         min: '441px',

@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { twJoin } from 'tailwind-merge'
@@ -21,8 +19,8 @@ function NavigationMenuItem({ title, href, icon }: NavigationCategory) {
             : 'text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-300'
         )}
       >
-        <span className='mr-[4px]'>{icon}</span>
-        <span className='text-[16px] [550px-max]:hidden'>{title}</span>
+        <span className='mr-[6px]'>{icon}</span>
+        <span className='text-[17px] [550px-max]:hidden'>{title}</span>
       </Link>
     </li>
   )

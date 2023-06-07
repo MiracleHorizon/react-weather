@@ -1,10 +1,14 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
 import HomeModernIcon from '@heroicons/react/24/outline/HomeModernIcon'
 import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon'
 import Cog6ToothIcon from '@heroicons/react/24/outline/Cog6ToothIcon'
 import MoonIcon from '@heroicons/react/24/outline/MoonIcon'
-import { twJoin, twMerge } from 'tailwind-merge'
+import { twJoin } from 'tailwind-merge'
 
 import NavigationMenuItem from './NavigationMenuItem'
+import { useVerticalScrollProgress } from '@hooks/useVerticalScrollProgress'
 import { Routes } from '@router/Routes'
 import type { NavigationCategory } from '@models/NavigationCategory'
 import styles from './NavigationMenu.module.css'
@@ -33,38 +37,42 @@ const navigationCategories: NavigationCategory[] = [
 ]
 
 export default function NavigationMenu() {
-  const mobileStyles = [
-    '[550px-max]:mt-0',
-    '[550px-max]:border-t-0',
-    '[550px-max]:w-[calc(100%-12px)]',
-    '[550px-max]:shadow-lg',
-    '[550px-max]:fixed',
-    '[550px-max]:bottom-[8px]',
-    '[550px-max]:left-1/2',
-    '[550px-max]:translate-x-[-50%]',
-    '[550px-max]:transform',
-    '[550px-max]:right-1/2',
-    '[550px-max]:rounded-2xl'
-  ]
+  const rootRef = useRef<HTMLMenuElement>(null)
+  const { isScrollOnTop } = useVerticalScrollProgress({
+    positions: ['top']
+  })
+
+  useEffect(() => {
+    if (!rootRef.current) return
+
+    if (isScrollOnTop) {
+      rootRef.current.classList.remove('shadow-md')
+    }
+
+    if (!isScrollOnTop) {
+      rootRef.current.classList.add('shadow-md')
+    }
+  }, [isScrollOnTop])
 
   return (
     <menu
-      className={twMerge(
-        mobileStyles,
-        twJoin([
-          'z-10',
-          'mt-[20px]',
-          'h-[50px]',
-          'w-full',
-          'rounded-b-3xl',
-          'border-t-[1px]',
-          'border-t-gray-200',
-          'bg-white',
-          'dark:bg-gray-500'
-        ])
-      )}
+      ref={rootRef}
+      className={twJoin([
+        'fixed',
+        'left-0',
+        'top-0',
+        'z-[1000]',
+        'flex',
+        'h-nav-menu-h',
+        'w-screen',
+        'items-center',
+        'justify-center',
+        'bg-white',
+        'dark:bg-slate-800',
+        '[550px-max]:h-nav-menu-sm-h'
+      ])}
     >
-      <nav className='h-full w-full px-[24px]'>
+      <nav className='h-full w-[500px] px-[24px]'>
         <ul className='flex h-full w-full items-center justify-between'>
           {navigationCategories.map(navigationCategory => (
             <NavigationMenuItem

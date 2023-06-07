@@ -27,31 +27,36 @@ export default function RootLayout({ children }: PropsWithChildren) {
 
   return (
     <html lang='en' className={withDarkMode ? 'dark' : 'light'}>
-      <body className={rubik.className}>
+      <body
+        className={twJoin([
+          rubik.className,
+          'bg-gradient-to-r',
+          'from-amber-300',
+          'to-orange-500',
+          'dark:bg-gradient-to-br',
+          'dark:from-slate-900',
+          'dark:to-gray-800'
+        ])}
+      >
         <div
           className={twJoin([
             'relative',
             'flex',
             'min-w-[300px]',
-            'min-h-screen',
             'w-screen',
             'items-start',
             'justify-center',
-            'bg-gradient-to-r',
-            'from-amber-300',
-            'to-orange-500',
             'px-[24px]',
-            'pt-[100px]',
+            'pt-[84px]',
             'pb-[80px]',
-            'dark:bg-gradient-to-br',
-            'dark:from-slate-900',
-            'dark:to-gray-800',
             '[440px-max]:px-[16px]',
             '[550px-max]:pb-[calc(45px+12px+6px)]',
+            '[550px-max]:pt-[74px]',
             '[650px-max]:items-start',
-            '[650px-max]:py-[24px]'
+            '[650px-max]:pb-[24px]'
           ])}
         >
+          <NavigationMenu />
           <main
             className={twJoin([
               'flex',
@@ -66,7 +71,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
             ])}
           >
             {children}
-            <NavigationMenu />
           </main>
         </div>
       </body>

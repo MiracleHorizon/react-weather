@@ -3,3 +3,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --nav-menu-h: 60px;
+  --nav-menu-sm-h: 50px;
+}
